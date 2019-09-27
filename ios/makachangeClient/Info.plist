@@ -45,6 +45,15 @@
 	<array>
 		<string>armv7</string>
 	</array>
+  <key>UIAppFonts</key>
+  <array>
+    <string>Gilroy-Bold.otf</string>
+    <string>Gilroy-Extrabold.otf</string>
+    <string>Gilroy-Light.otf</string>
+    <string>Gilroy-Medium.otf</string>
+    <string>Gilroy-Regular.otf</string>
+    <string>Gilroy-Semibold.otf</string>
+  </array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
