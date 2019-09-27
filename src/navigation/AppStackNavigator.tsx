@@ -5,6 +5,7 @@ import {__COLORS} from '../layout/Colors';
 import {createStackNavigator, NavigationScreenProp} from 'react-navigation';
 import MainScreen from '../screens/MainScreen';
 import BenchmarkScreen from '../screens/BenchmarkScreen';
+import {BackIcon} from '../components/BackIcon';
 
 type NavigationProps = {
   navigation: NavigationScreenProp<any, any>;
@@ -28,6 +29,11 @@ export const OnBoardingStackNavigator = createStackNavigator(
         <BenchmarkScreen navigation={navigation} />
       ),
       path: __SCREENS.BENCHMARK,
+      navigationOptions: ({navigation}: NavigationProps) => ({
+        headerTitle: <TextBold>title</TextBold>,
+        headerLeft: <BackIcon navigation={navigation} />,
+        headerRight: <TextBold>right</TextBold>,
+      }),
     },
   },
   {
