@@ -19,10 +19,10 @@ export const OnBoardingStackNavigator = createStackNavigator(
       ),
       path: __SCREENS.APP,
       navigationOptions: ({navigation}: NavigationProps) => ({
-        headerTitle: <TextBold>title</TextBold>,
-        headerLeft: <TextBold>Left</TextBold>,
-        headerRight: <TextBold>right</TextBold>,
+        header: null,
       }),
+      headerTransparent: true,
+      backgroundColor: 'transparent',
     },
     [__SCREENS.BENCHMARK]: {
       screen: ({navigation}: NavigationProps) => (

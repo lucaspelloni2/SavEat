@@ -1,10 +1,9 @@
 import React, {ReactNode} from 'react';
-import {View, Text, ViewStyle, Platform} from 'react-native';
-import styled, {StyledProps} from 'styled-components';
-import {Dimensions} from 'react-native';
-import {__FONT_FAMILIES} from "./Fonts";
-import {__COLORS} from "./Colors";
-import {normalize} from "./Normalization";
+import {Dimensions, Platform, Text, View, ViewStyle} from 'react-native';
+import styled from 'styled-components';
+import {__FONT_FAMILIES} from './Fonts';
+import {__COLORS} from './Colors';
+import {normalize} from './Normalization';
 /**
  * Types
  */
@@ -57,17 +56,22 @@ export const CardPadding = styled(Flex)`
 `;
 
 export const SPACING = 8;
+const textColor: __COLORS = __COLORS.TEXT_COLOR;
+
+export const Wrapper = styled(Flex)`
+  padding: ${SPACING * 2}px ${SPACING * 3}px;
+`;
 
 export const TextLight = styled(MyText)<{fontSize?: number}>`
   font-family: ${__FONT_FAMILIES.LIGHT};
-  color: ${__COLORS.WHITE};
+  color: ${textColor};
   font-size: ${props =>
     props.fontSize ? normalize(props.fontSize) : normalize(12)}px;
 `;
 
 export const TextRegular = styled(MyText)<{fontSize?: number}>`
   font-family: ${__FONT_FAMILIES.REGULAR};
-  color: ${__COLORS.WHITE};
+  color: ${textColor};
   font-size: ${props =>
     props.fontSize ? normalize(props.fontSize) : normalize(12)}px;
   margin-top: ${Platform.OS === 'ios' ? normalize(4) : 0}px;
@@ -75,7 +79,7 @@ export const TextRegular = styled(MyText)<{fontSize?: number}>`
 
 export const TextSemiBold = styled(MyText)<{fontSize?: number}>`
   font-family: ${__FONT_FAMILIES.SEMI_BOLD};
-  color: ${__COLORS.WHITE};
+  color: ${textColor};
   font-size: ${props =>
     props.fontSize ? normalize(props.fontSize) : normalize(12)}px;
   margin-top: ${Platform.OS === 'ios' ? normalize(4) : 0}px;
@@ -83,7 +87,7 @@ export const TextSemiBold = styled(MyText)<{fontSize?: number}>`
 
 export const TextBold = styled(MyText)<{fontSize?: number}>`
   font-family: ${__FONT_FAMILIES.BOLD};
-  color: ${__COLORS.WHITE};
+  color: ${textColor};
   font-size: ${props =>
     props.fontSize ? normalize(props.fontSize) : normalize(12)}px;
   margin-top: ${Platform.OS === 'ios' ? normalize(4) : 0}px;
@@ -91,7 +95,7 @@ export const TextBold = styled(MyText)<{fontSize?: number}>`
 
 export const TextExtraBold = styled(MyText)<{fontSize?: number}>`
   font-family: ${__FONT_FAMILIES.EXTRA_BOLD};
-  color: ${__COLORS.WHITE};
+  color: ${textColor};
   font-size: ${props =>
     props.fontSize ? normalize(props.fontSize) : normalize(12)}px;
   margin-top: ${Platform.OS === 'ios' ? normalize(4) : 0}px;
