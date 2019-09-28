@@ -28,7 +28,7 @@ export type Product = {
   baseUnit: WeightUnit;
   image: string | null;
   labels: Label[];
-  color: DominantColors | null;
+  colors: DominantColors | null;
 };
 
 export type RecipeIngredient = {

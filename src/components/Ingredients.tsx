@@ -44,15 +44,25 @@ export const Ingredients = ({ingredients}: Props) => {
 
 import Carousel from 'react-native-snap-carousel';
 import {Component} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import * as React from 'react';
 import {__WINDOW_WIDTH, SPACING, TextBold} from '../layout/Layout';
 import {RecipeEvaluationPossibilityIngredient} from '../helpers/backend-types';
 import {Ingredient} from './Ingredient';
+import {__GRAY_COLORS} from '../layout/Colors';
 
 type Props = {
   ingredients: RecipeEvaluationPossibilityIngredient[];
 };
+
+const Shadow = StyleSheet.create({
+  shadow: {
+    shadowColor: 'rgba(0,0,0, .3)',
+    shadowOffset: {height: 10, width: 10},
+    shadowOpacity: 50,
+    shadowRadius: 5,
+  },
+});
 
 export class Ingredients extends Component<Props, {}> {
   state = {
@@ -70,11 +80,26 @@ export class Ingredients extends Component<Props, {}> {
     if (!item.products.length) {
       return <TextBold>No ingredients</TextBold>;
     }
+    console.log('is active ', item.products[0].product.name);
     return (
       <View
         key={index}
-        style={{backgroundColor: 'red', width: 300, height: 200}}>
-        <Ingredient ingredient={i.product} />
+        style={[
+          {
+            width: 160,
+            marginTop: 10,
+            height: 200,
+            backgroundColor: 'transparent',
+            borderWidth: 1,
+            borderColor: __GRAY_COLORS._300,
+            borderRadius: 10,
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 10
+          },
+        ]}>
+        <Ingredient ingredient={i} />
       </View>
     );
   }
@@ -82,15 +107,14 @@ export class Ingredients extends Component<Props, {}> {
   render() {
     return (
       <Carousel
-        layout={'stack'}
-        layoutCardOffset={`18`}
+        layout={'default'}
         ref={c => {
           this._carousel = c;
         }}
         data={this.props.ingredients}
         renderItem={this._renderItem}
         sliderWidth={__WINDOW_WIDTH}
-        itemWidth={__WINDOW_WIDTH - SPACING * 10}
+        itemWidth={160}
       />
     );
   }

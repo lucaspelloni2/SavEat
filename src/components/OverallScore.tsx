@@ -4,14 +4,8 @@ import styled from 'styled-components';
 import {PieChart} from 'react-native-svg-charts';
 import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
 import getCo2Hue from '../helpers/get-co2-hue';
-import {
-  __WINDOW_WIDTH,
-  MyView,
-  TextBold,
-  TextLight,
-  TextRegular,
-} from '../layout/Layout';
-import {StyleSheet, View, Text} from 'react-native';
+import {__WINDOW_WIDTH, MyView, TextLight, TextRegular} from '../layout/Layout';
+import {StyleSheet, View} from 'react-native';
 import {getAlphaColor} from '../layout/AlphaColor';
 
 type Props = {score: number};
@@ -20,11 +14,10 @@ const Container = styled(MyView)``;
 
 const Shadow = StyleSheet.create({
   shadow: {
-    shadowColor: 'rgba(0,0,0, .7)',
+    shadowColor: 'rgba(0,0,0, .2)',
     shadowOffset: {height: 0, width: 0},
-    shadowOpacity: 1,
+    shadowOpacity: 10,
     shadowRadius: 5,
-    flexDirection: 'row',
   },
 });
 
@@ -44,7 +37,7 @@ class OverallScore extends React.PureComponent<Props, {}> {
     const {labelWidth, selectedSlice} = this.state;
     const {label, value} = selectedSlice;
     const keys = ['google', 'facebook', 'linkedin', 'youtube', 'Twitter'];
-    const values = [40, 50, 30, 30, 120];
+    const values = [40, 50, 20, 60, 70];
     const colors = [
       getAlphaColor(0.75, getCo2Hue(10)),
       getAlphaColor(0.75, getCo2Hue(30)),
@@ -68,11 +61,20 @@ class OverallScore extends React.PureComponent<Props, {}> {
     const deviceWidth = __WINDOW_WIDTH;
 
     return (
-      <View style={[{justifyContent: 'center', flex: 1}]}>
+      <View
+        style={[
+          {
+            paddingTop: 20,
+            paddingBottom: 20,
+            backgroundColor: getAlphaColor(0.2, __COLORS.PRIMARY),
+            width: __WINDOW_WIDTH,
+          },
+          Shadow.shadow,
+        ]}>
         <PieChart
           style={{height: 150}}
-          outerRadius={'750%'}
-          innerRadius={'45%'}
+          outerRadius={'70%'}
+          innerRadius={'50%'}
           data={data}
         />
 
@@ -87,7 +89,7 @@ class OverallScore extends React.PureComponent<Props, {}> {
           }}
           style={[
             {
-              top: 54,
+              top: 75,
               color: __GRAY_COLORS._BLACK,
               position: 'absolute',
               left: deviceWidth / 2 - labelWidth / 2 + 1,
@@ -99,10 +101,10 @@ class OverallScore extends React.PureComponent<Props, {}> {
         <TextLight
           fontSize={11}
           style={{
-            top: 80,
+            top: 105,
             color: __GRAY_COLORS._700,
             position: 'absolute',
-            left: deviceWidth / 2 - labelWidth / 2 -4,
+            left: deviceWidth / 2 - labelWidth / 2 - 4,
             textAlign: 'center',
           }}>
           C02 KG
