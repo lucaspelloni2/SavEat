@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {MyView, SPACING} from '../layout/Layout';
+import {SPACING} from '../layout/Layout';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import {
   ActivityIndicator,
