@@ -14,14 +14,14 @@ type Props = {
 };
 const Container = styled(MyView)`
   flex-direction: row;
-  margin: 15px 0 15px 15px;
-
+  background: blue;
   flex: 1;
 `;
 
 const ImageContainer = styled(MyView)``;
 
 export const Ingredient = ({ingredient}: Props) => {
+  console.log(ingredient);
   return (
     <Container>
       <ImageContainer>
