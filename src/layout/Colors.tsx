@@ -1,6 +1,6 @@
 export enum __COLORS {
   PRIMARY = '#42b883',
-  SECONDARY = '#53918A',
+  SECONDARY = '#0A554C',
   TEARTIARY = '#ff7e67',
   APP_BACKGROUND = '#fff',
   WHITE = '#fff',
