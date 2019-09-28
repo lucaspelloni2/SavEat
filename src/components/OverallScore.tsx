@@ -5,13 +5,14 @@ import {PieChart} from 'react-native-svg-charts';
 import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
 import getCo2Hue from '../helpers/get-co2-hue';
 import {__WINDOW_WIDTH, MyView, TextLight, TextRegular} from '../layout/Layout';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View, Image, Text} from 'react-native';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {Recipe} from '../helpers/backend-types';
 
 type Props = {
   recipe: Recipe;
   scores: number[];
+  co2Score: number;
   currentScore: number;
   currentIndex: number;
 };
@@ -73,9 +74,14 @@ class OverallScore extends React.PureComponent<Props, {}> {
     scores.map(s => {
       avarage += s;
     });
-    let overallScore = avarage / scores.length;
+    let overallScore = this.props.scores;
 
-    let ratio = scores.filter(x => x > 200).length === 0 ? 4 : scores.filter(x => x > 500).length === 0 ? 7 : 10;
+    let ratio =
+      scores.filter(x => x > 200).length === 0
+        ? 4
+        : scores.filter(x => x > 500).length === 0
+        ? 7
+        : 10;
 
     const data = scores.map((key, index) => {
       return {
@@ -151,8 +157,11 @@ class OverallScore extends React.PureComponent<Props, {}> {
               textAlign: 'center',
             },
           ]}>
-          {Math.round(overallScore).toFixed(0)}
+          {Math.round(this.props.co2Score).toFixed(0)}
         </TextRegular>
+        <Text style={{fontSize: 11, position: 'absolute', right: 72, top: 100}}>
+          g CO₂/100g
+        </Text>
       </View>
     );
   }
