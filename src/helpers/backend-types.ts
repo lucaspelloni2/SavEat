@@ -1,5 +1,6 @@
 // Just copy pasted from backend
 import {FoodCategory} from './food-categories';
+
 export type CoopSearchResult = {
   name: string;
   id: string;
@@ -36,6 +37,7 @@ export type RecipeIngredient = {
 
 export type Remark = {
   message: string;
+  co2Change: number;
 };
 
 export type IngredientEvaluation = {
@@ -56,8 +58,15 @@ export type Recipe = {
   image: string;
 };
 
+export type ProductWithCarbonProjection = {
+  product: Product;
+  co2Offset: number;
+  positiveRemarks: Remark[];
+  negativeRemarks: Remark[];
+};
+
 export type RecipeEvaluationPossibilityIngredient = {
-  products: Product[];
+  products: ProductWithCarbonProjection[];
 };
 
 export type RecipeEvaluationPossibility = {

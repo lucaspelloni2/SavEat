@@ -24,11 +24,6 @@ import FullscreenBackground from '../layout/FullscreenBackground';
 import apiRequest from '../helpers/api-request';
 import {Recipe} from '../helpers/backend-types';
 
-const Container = styled(MyView)`
-  flex: 1;
-  margin-top: ${SPACING * 2}px;
-`;
-
 const Recipes = styled(ScrollView)`
   margin-top: ${SPACING}px;
   margin-bottom: ${SPACING * 2}px;

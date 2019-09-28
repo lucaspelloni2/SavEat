@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import Card from './Card';
 import {
   Recipe,
@@ -10,8 +10,6 @@ import {__FONT_FAMILIES} from '../layout/Fonts';
 import styled from 'styled-components';
 import CoolDots from './CoolDots';
 import NumberOfPeoplePicker from './NumberOfPeoplePicker';
-import formatCo2 from '../layout/formatCo2';
-import getCo2Hue from '../helpers/get-co2-hue';
 import IngredientEvaluationView from './IngredientEvaluationView';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {__COLORS} from '../layout/Colors';
@@ -53,12 +51,19 @@ export default (props: {
 }) => {
   const [people, setPeople] = useState<number>(2);
   return (
-    <Card style={{paddingTop: 30}}>
+    <Card>
+      <View style={{height: 30}} />
       <Title style={{fontFamily: __FONT_FAMILIES.EXTRA_BOLD}}>
         {props.recipe.name}
       </Title>
       <View style={{height: 10}} />
       <CoolDots />
+      <View style={{height: 15}} />
+      <Image source={{uri: props.recipe.image}} style={{height: 200}} />
+      <Button onPress={() => props.onGoToShopping()}>
+        <ButtonLabel>Show best shopping options</ButtonLabel>
+      </Button>
+
       <NumberOfPeoplePicker people={people} setPeople={setPeople} />
 
       {props.ingredientEvaluation.map((i, idx) => {
@@ -75,11 +80,9 @@ export default (props: {
         style={{
           borderColor: getAlphaColor(0.1, __COLORS.TEARTIARY),
           borderWidth: 1,
+          marginBottom: 50,
         }}
       />
-      <Button onPress={() => props.onGoToShopping()}>
-        <ButtonLabel>Show best shopping options</ButtonLabel>
-      </Button>
     </Card>
   );
 };

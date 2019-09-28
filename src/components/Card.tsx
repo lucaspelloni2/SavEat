@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {View} from 'react-native';
+import {View, ScrollView} from 'react-native';
 
-export default styled(View)`
+export default styled(ScrollView)`
   background: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
