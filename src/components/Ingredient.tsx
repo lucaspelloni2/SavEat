@@ -59,7 +59,6 @@ export const Ingredient = ({ingredient}: Props) => {
   const price = product.price; // rappe
   const co2offset = ingredient.co2Offset;
   const color = ingredient.product.colors;
-  console.log(co2offset);
 
   return (
     <Container>
