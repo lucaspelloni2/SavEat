@@ -1,6 +1,9 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useState} from 'react';
 import {StatusBar, YellowBox} from 'react-native';
 import AppNavigator from './src/navigation/AppNavigator';
+import VariantsModal from './src/components/VariantsModal';
+import ModalContext, {ModalSetterContext} from './src/helpers/modalize-context';
+import {ProductWithCarbonProjection} from './src/helpers/backend-types';
 
 YellowBox.ignoreWarnings([
   'Remote debugger',
@@ -14,10 +17,25 @@ YellowBox.ignoreWarnings([
 ]);
 
 const App: () => ReactNode = () => {
+  const [variantModal, setVariantModel] = useState<
+    ProductWithCarbonProjection[]
+  >();
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <AppNavigator />
+      <ModalSetterContext.Provider
+        value={(hi: ProductWithCarbonProjection[]) => {
+          setVariantModel(hi);
+        }}>
+        <ModalContext.Provider value={variantModal}>
+          <StatusBar barStyle="dark-content" />
+          <AppNavigator />
+          <VariantsModal
+            onClosed={() => {
+              setVariantModel(null);
+            }}
+          />
+        </ModalContext.Provider>
+      </ModalSetterContext.Provider>
     </>
   );
 };

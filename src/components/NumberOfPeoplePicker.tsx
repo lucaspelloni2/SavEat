@@ -3,6 +3,7 @@ import {View, TouchableOpacity, Text} from 'react-native';
 import styled from 'styled-components';
 import {__COLORS} from '../layout/Colors';
 import {__FONT_FAMILIES} from '../layout/Fonts';
+import formatCo2 from '../layout/formatCo2';
 
 const Row = styled(View)`
   flex-direction: row;
@@ -36,15 +37,23 @@ const ForHowManyPeopleLabel = styled(Text)`
   font-family: ${__FONT_FAMILIES.BOLD};
 `;
 
+const TotalCO2 = styled(Text)`
+  font-family: ${__FONT_FAMILIES.REGULAR};
+`;
+
 export default (props: {
   people: number;
+  totalCo2: number;
   setPeople: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   return (
     <Row>
-      <ForHowManyPeopleLabel>
-        For {props.people} {props.people === 1 ? 'person' : 'people'}
-      </ForHowManyPeopleLabel>
+      <View>
+        <ForHowManyPeopleLabel>
+          For {props.people} {props.people === 1 ? 'person' : 'people'}
+        </ForHowManyPeopleLabel>
+        <TotalCO2>{formatCo2(props.totalCo2)} CO₂ total</TotalCO2>
+      </View>
       <View style={{flex: 1}} />
       <TouchableOpacity
         disabled={props.people === 1}
