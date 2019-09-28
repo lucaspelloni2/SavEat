@@ -28,7 +28,6 @@ const Hack = styled(MyView)`
   left: ${SPACING * 3.5}px;
 `;
 
-
 type Props = {
   navigation: NavigationScreenProp<any, any>;
 };
@@ -73,7 +72,7 @@ const AnimatedTitle = ({isOnFocus}: TitleProps) => {
     animatedValue,
     not(animatedValue),
     animatedValue,
-    400,
+    200,
     Easing.ease,
   );
 
@@ -107,7 +106,9 @@ class MainScreen extends React.Component<Props, State> {
     searchValue: '',
     isOnFocus: false,
   };
-  componentDidMount(): void {}
+  componentDidMount(): void {
+      //TODO: fetch recipes
+  }
 
   render() {
     const {navigation} = this.props;
