@@ -50,6 +50,9 @@ export default (props: {
   onGoToShopping: () => void;
 }) => {
   const [people, setPeople] = useState<number>(2);
+  const totalCo2 = props.ingredientEvaluation
+    .map(p => p.averageCarbonEmission * p.perPerson * people)
+    .reduce((a, b) => a + b, 0);
   return (
     <Card>
       <View style={{height: 30}} />
@@ -64,7 +67,11 @@ export default (props: {
         <ButtonLabel>Show best shopping options</ButtonLabel>
       </Button>
 
-      <NumberOfPeoplePicker people={people} setPeople={setPeople} />
+      <NumberOfPeoplePicker
+        totalCo2={totalCo2}
+        people={people}
+        setPeople={setPeople}
+      />
 
       {props.ingredientEvaluation.map((i, idx) => {
         return (
