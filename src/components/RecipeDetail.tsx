@@ -15,6 +15,7 @@ import getCo2Hue from '../helpers/get-co2-hue';
 import IngredientEvaluationView from './IngredientEvaluationView';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {__COLORS} from '../layout/Colors';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const renderFoodName = (ingredient: RecipeIngredient): string => {
   if (ingredient.labelOverride) {
@@ -28,9 +29,27 @@ const Title = styled(Text)`
   font-size: 24px;
 `;
 
+const Button = styled(TouchableOpacity)`
+  background-color: ${__COLORS.SECONDARY};
+  margin-left: 16px;
+  margin-right: 16px;
+  padding-top: 18px;
+  padding-bottom: 16px;
+  margin-top: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+`;
+
+const ButtonLabel = styled(Text)`
+  color: white;
+  font-family: ${__FONT_FAMILIES.BOLD};
+`;
+
 export default (props: {
   recipe: Recipe;
   ingredientEvaluation: IngredientEvaluation[];
+  onGoToShopping: () => void;
 }) => {
   const [people, setPeople] = useState<number>(2);
   return (
@@ -54,10 +73,13 @@ export default (props: {
       })}
       <View
         style={{
-          borderColor: getAlphaColor(0.3, __COLORS.TEARTIARY),
+          borderColor: getAlphaColor(0.1, __COLORS.TEARTIARY),
           borderWidth: 1,
         }}
       />
+      <Button onPress={() => props.onGoToShopping()}>
+        <ButtonLabel>Show best shopping options</ButtonLabel>
+      </Button>
     </Card>
   );
 };

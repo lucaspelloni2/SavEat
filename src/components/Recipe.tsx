@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Image, StyleSheet, View} from 'react-native';
 import {MyView, SPACING, TextBold} from '../layout/Layout';
 import {__COLORS} from '../layout/Colors';
+import {Recipe} from '../helpers/backend-types';
 
 export type Ingredients = {
   id: string;
@@ -10,21 +11,9 @@ export type Ingredients = {
   co2: number;
   price: number;
 };
-export type RecipeType = {
-  totalPrice: number;
-  id: string;
-  image: string;
-  name: string;
-  ingredients: Ingredients[];
-  time: number;
-  provenance: string;
-  instructions: string;
-  people: number;
-  co2: number; // server-side already computes average for recipe
-};
 
 type Props = {
-  recipe: RecipeType;
+  recipe: Recipe;
 };
 
 const Container = styled(View)`
@@ -42,9 +31,8 @@ const PictureContainer = styled(MyView)`
 
 const TitleContainer = styled(MyView)`
   justify-content: center;
-  align-items: center;
-  flex-shrink: 1;
   margin-left: ${SPACING * 2}px;
+  flex: 1;
 `;
 
 const Title = styled(TextBold)`
@@ -61,7 +49,7 @@ const Shadow = StyleSheet.create({
   },
 });
 
-export const Recipe = ({recipe}: Props) => {
+export const RecipePreview = ({recipe}: Props) => {
   const SIZE = 120;
   return (
     <Container>

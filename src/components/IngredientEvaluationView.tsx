@@ -13,7 +13,7 @@ const Container = styled(View)`
   padding-bottom: 10px;
   padding-top: 10px;
   border-top-width: 1px;
-  border-top-color: ${getAlphaColor(0.3, __COLORS.TEARTIARY)};
+  border-top-color: ${getAlphaColor(0.1, __COLORS.TEARTIARY)};
 `;
 
 export default (props: {

@@ -1,6 +1,5 @@
 // Just copy pasted from backend
 import {FoodCategory} from './food-categories';
-
 export type CoopSearchResult = {
   name: string;
   id: string;
@@ -51,7 +50,10 @@ export type IngredientEvaluation = {
 
 export type Recipe = {
   name: string;
+  slug: string;
   ingredients: RecipeIngredient[];
+  instructions: string;
+  image: string;
 };
 
 export type RecipeEvaluationPossibilityIngredient = {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import Swiper from 'react-native-swiper';
 import FullscreenBackground from '../layout/FullscreenBackground';
@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 type Props = {
   navigation: NavigationScreenProp<any, any>;
+  onPressButton: () => void;
 };
 
 const CardHolder = styled(View)`
@@ -24,6 +25,7 @@ export default withNavigation((props: Props) => {
   const [recipeEvaluation, setRecipeEvaluation] = useState<RecipeEvaluation>(
     null,
   );
+  const swiperRef = useRef<Swiper>();
   // like componentDidMounts
   useEffect(() => {
     apiRequest(`/recipes/${props.navigation.getParam('id')}`)
@@ -33,11 +35,14 @@ export default withNavigation((props: Props) => {
       .catch(err => {
         alert(err);
       });
-  }, []);
+  }, []); // eslint-disable-line
   const renderContent = () => {
     const children = [
       <CardHolder key="recipe">
         <RecipeDetail
+          onGoToShopping={() => {
+            swiperRef.current.scrollBy(1);
+          }}
           ingredientEvaluation={recipeEvaluation.ingredientEvaluation}
           recipe={recipeEvaluation.recipe}
         />
@@ -56,7 +61,9 @@ export default withNavigation((props: Props) => {
     <View style={{flex: 1}}>
       <FullscreenBackground />
       {recipeEvaluation ? (
-        <Swiper loop={false}>{renderContent()}</Swiper>
+        <Swiper ref={swiperRef} loop={false}>
+          {renderContent()}
+        </Swiper>
       ) : (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <ActivityIndicator />
