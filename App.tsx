@@ -19,7 +19,7 @@ YellowBox.ignoreWarnings([
 const App: () => ReactNode = () => {
   const [variantModal, setVariantModel] = useState<
     ProductWithCarbonProjection[]
-  >();
+  >(null);
   return (
     <>
       <ModalSetterContext.Provider
