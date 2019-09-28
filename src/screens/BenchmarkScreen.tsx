@@ -3,7 +3,7 @@ import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import Swiper from 'react-native-swiper';
 import FullscreenBackground from '../layout/FullscreenBackground';
 import apiRequest from '../helpers/api-request';
-import {View, ActivityIndicator,StyleSheet, Dimensions} from 'react-native';
+import {View, ActivityIndicator, StyleSheet, Dimensions} from 'react-native';
 import {RecipeEvaluation} from '../helpers/backend-types';
 import Possibility from '../components/Possibility';
 import RecipeDetail from '../components/RecipeDetail';
@@ -18,7 +18,6 @@ type Props = {
 const CardHolder = styled(View)`
   flex: 1;
   padding-top: 100px;
-
 `;
 
 const imageWidth = Dimensions.get('window').width - 32;

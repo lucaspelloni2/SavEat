@@ -57,7 +57,9 @@ export default (props: {possibility: RecipeEvaluationPossibility}) => {
         <Flex number={store === 'COOP' ? 0 : 1} />
       </StoresView>
       <Card>
-        <OverallScore />
+        <OverallScore
+          score={possibility.ingredients[0].products[0].co2Offset}
+        />
         <Ingredients ingredients={possibility.ingredients} />
       </Card>
     </>
