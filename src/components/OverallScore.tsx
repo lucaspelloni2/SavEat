@@ -9,7 +9,7 @@ import {StyleSheet, View, Image} from 'react-native';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {Recipe} from '../helpers/backend-types';
 
-type Props = {overallScore: number; recipe: Recipe; scores: number[]};
+type Props = {recipe: Recipe; scores: number[]};
 
 const Overlay = styled(MyView)``;
 
@@ -46,10 +46,21 @@ class OverallScore extends React.PureComponent<Props, {}> {
     const {label, value} = selectedSlice;
     const keys = ['google', 'facebook', 'linkedin', 'youtube', 'Twitter'];
 
-    const scores = [...new Set(this.props.scores)];
+    let scores = [...new Set(this.props.scores)];
+
+    if (scores.length === 0) {
+      scores.push(50);
+      scores.push(100);
+    }
     const colors = scores.map(s => {
       return getAlphaColor(0.75, getCo2Hue(s));
     });
+
+    let avarage = 0;
+    scores.map(s => {
+      avarage += s;
+    });
+    let overallScore = avarage / scores.length;
 
     const data = keys.map((key, index) => {
       return {
@@ -57,15 +68,21 @@ class OverallScore extends React.PureComponent<Props, {}> {
         value: scores[index],
         svg: {fill: colors[index]},
         arc: {
-          outerRadius: 70 + scores[index]/5 + '%',
+          outerRadius: 70 + scores[index] / 5.6 + '%',
           padAngle: label === key ? 0.1 : 0,
         },
         onPress: () =>
-          this.setState({selectedSlice: {label: key, value: values[index]}}),
+          this.setState({selectedSlice: {label: key, value: scores[index]}}),
       };
     });
-    const deviceWidth = __WINDOW_WIDTH;
-    console.log(this.props.recipe.image);
+    let ingriedients = this.props.recipe.ingredients;
+    ingriedients.map(i => {
+      let food = i.food;
+      console.log(food, i.gram);
+    });
+
+    // wenn 2 in co2offset -> 200g CO2 pro 100g Food
+    // food: in gram
     return (
       <View
         style={[
@@ -120,19 +137,8 @@ class OverallScore extends React.PureComponent<Props, {}> {
               textAlign: 'center',
             },
           ]}>
-          {Math.round(this.props.overallScore).toFixed(0)}
+          {Math.round(overallScore).toFixed(0)}
         </TextRegular>
-        <TextLight
-          fontSize={11}
-          style={{
-            top: 105,
-            color: __GRAY_COLORS._700,
-            position: 'absolute',
-            left: deviceWidth / 2 - labelWidth / 2 - 4,
-            textAlign: 'center',
-          }}>
-          CO2 KG
-        </TextLight>
       </View>
     );
   }

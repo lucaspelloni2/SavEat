@@ -60,10 +60,6 @@ export class Ingredients extends Component<Props, {}> {
 
   _renderItem({item, index}) {
     const i = item.products[0];
-    if (!item.products.length) {
-      return <TextBold>No ingredients</TextBold>;
-    }
-
     return (
       <View
         key={index}
@@ -96,7 +92,7 @@ export class Ingredients extends Component<Props, {}> {
         ref={c => {
           this._carousel = c;
         }}
-        data={this.props.ingredients}
+        data={this.props.ingredients.filter(i => i.products.length > 0)}
         renderItem={({item, index}) => this._renderItem({item, index})}
         sliderWidth={__WINDOW_WIDTH}
         itemWidth={160}

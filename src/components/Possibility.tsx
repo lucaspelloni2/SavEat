@@ -65,7 +65,6 @@ export default (props: {
         <OverallScore
           recipe={props.recipe}
           scores={possibility.ingredients[0].products.map(p => p.co2Offset)}
-          overallScore={100}
         />
         <Ingredients ingredients={possibility.ingredients} />
         <View style={{height: 12}} />
