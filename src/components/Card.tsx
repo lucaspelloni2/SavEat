@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {View, ScrollView} from 'react-native';
+import {MyView} from "../layout/Layout";
 
 export default styled(ScrollView)`
   background: white;

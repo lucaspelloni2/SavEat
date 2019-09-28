@@ -4,8 +4,7 @@ import {View, ScrollView, Image} from 'react-native';
 import Card from './Card';
 import {Flex, MyView, TextBold} from '../layout/Layout';
 import styled from 'styled-components';
-import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
-import {Ingredient} from './Ingredient';
+import {Ingredients} from './Ingredients';
 
 const StoresView = styled(MyView)`
   flex-direction: row;
@@ -16,11 +15,6 @@ const StoresView = styled(MyView)`
 const Store = styled(MyView)<{isActive: boolean}>`
   opacity: ${props => (props.isActive ? 1 : 0.5)};
   transform: ${props => (props.isActive ? 'scale(1)' : 'scale(0.5)')};
-  flex: 1;
-`;
-
-const Ingredients = styled(ScrollView)`
-  background: red;
   flex: 1;
 `;
 
@@ -37,6 +31,7 @@ const getImage = (store: string) => {
 export default (props: {possibility: RecipeEvaluationPossibility}) => {
   const possibility = props.possibility;
   const {store, ingredients} = possibility;
+  // @ts-ignore
   return (
     <>
       <StoresView>
@@ -61,16 +56,7 @@ export default (props: {possibility: RecipeEvaluationPossibility}) => {
         <Flex number={store === 'COOP' ? 0 : 1} />
       </StoresView>
       <Card>
-        {props.possibility.ingredients.map(ingredient => {
-          if (!ingredient.products.length) {
-            return <TextBold>No ingredients</TextBold>;
-          }
-          return (
-            <View key={ingredient.products[0].product.name}>
-              <Ingredient ingredient={ingredient.products[0].product} />
-            </View>
-          );
-        })}
+        <Ingredients ingredients={possibility.ingredients} />
       </Card>
     </>
   );
