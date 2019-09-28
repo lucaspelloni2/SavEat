@@ -9,6 +9,8 @@ import Possibility from '../components/Possibility';
 import RecipeDetail from '../components/RecipeDetail';
 import styled from 'styled-components';
 import BackButton from '../layout/BackButton';
+import {TextBold} from '../layout/Layout';
+import {Comparison} from '../components/Comparison';
 
 type Props = {
   navigation: NavigationScreenProp<any, any>;
@@ -59,7 +61,12 @@ export default withNavigation((props: Props) => {
         </CardHolder>
       );
     });
-    return [children, ...possibilities];
+    const comparison = [
+      <CardHolder key={'comparison'}>
+        <Comparison recipe={possibilities} />
+      </CardHolder>,
+    ];
+    return [...comparison, children, ...possibilities, ...comparison];
   };
   return (
     <View style={{flex: 1}}>

@@ -77,7 +77,7 @@ export const Ingredient = ({ingredient}: Props) => {
       </Name>
       <Label color={getAlphaColor(0.3, getCo2Hue(co2offset))}>
         <CO2 fontSize={14} color={getAlphaColor(1, getCo2Hue(co2offset))}>
-          {Math.round(co2offset).toFixed(0)}g CO₂
+          {Math.round(co2offset).toFixed(0)}g CO₂ / 100g
         </CO2>
       </Label>
     </Container>
