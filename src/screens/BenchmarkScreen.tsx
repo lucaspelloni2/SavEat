@@ -3,11 +3,12 @@ import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import Swiper from 'react-native-swiper';
 import FullscreenBackground from '../layout/FullscreenBackground';
 import apiRequest from '../helpers/api-request';
-import {View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, Dimensions} from 'react-native';
 import {RecipeEvaluation} from '../helpers/backend-types';
 import Possibility from '../components/Possibility';
 import RecipeDetail from '../components/RecipeDetail';
 import styled from 'styled-components';
+import BackButton from '../layout/BackButton';
 
 type Props = {
   navigation: NavigationScreenProp<any, any>;
@@ -21,6 +22,8 @@ const CardHolder = styled(View)`
   padding-right: 16px;
 `;
 
+const imageWidth = Dimensions.get('window').width - 32;
+
 export default withNavigation((props: Props) => {
   const [recipeEvaluation, setRecipeEvaluation] = useState<RecipeEvaluation>(
     null,
@@ -28,7 +31,9 @@ export default withNavigation((props: Props) => {
   const swiperRef = useRef<Swiper>();
   // like componentDidMounts
   useEffect(() => {
-    apiRequest(`/recipes/${props.navigation.getParam('id')}`)
+    apiRequest(
+      `/recipes/${props.navigation.getParam('id')}?width=${imageWidth}`,
+    )
       .then((response: RecipeEvaluation) => {
         setRecipeEvaluation(response);
       })
@@ -60,6 +65,7 @@ export default withNavigation((props: Props) => {
   return (
     <View style={{flex: 1}}>
       <FullscreenBackground />
+      <BackButton />
       {recipeEvaluation ? (
         <Swiper ref={swiperRef} loop={false}>
           {renderContent()}

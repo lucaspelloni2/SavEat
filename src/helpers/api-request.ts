@@ -4,5 +4,5 @@ export default async (path: string) => {
   if (json.success) {
     return json.data;
   }
-  throw new Error(json.error)
+  throw new Error(json.error);
 };
