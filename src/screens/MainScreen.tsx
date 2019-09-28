@@ -184,7 +184,6 @@ class MainScreen extends React.Component<Props, State> {
               }}
               onTextChange={(newSearchValue: string) => {
                 this.setState({searchValue: newSearchValue});
-                // TODO: perform call
               }}
               placeholder={'Search your recipe'}
               clear={() => {}}
@@ -204,8 +203,15 @@ class MainScreen extends React.Component<Props, State> {
             {!recipes ? (
               <ActivityIndicator size="small" color="#fff" />
             ) : (
-              recipes
+              (recipes as Recipe[])
                 .filter(f => {
+                  if (this.state.searchValue) {
+                    return (
+                      f.name
+                        .toLowerCase()
+                        .indexOf(this.state.searchValue.toLowerCase()) > -1
+                    );
+                  }
                   if (!this.state.filter) {
                     return true;
                   }
