@@ -3,11 +3,13 @@ import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import Swiper from 'react-native-swiper';
 import FullscreenBackground from '../layout/FullscreenBackground';
 import apiRequest from '../helpers/api-request';
-import {View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import {RecipeEvaluation} from '../helpers/backend-types';
 import Possibility from '../components/Possibility';
 import RecipeDetail from '../components/RecipeDetail';
 import styled from 'styled-components';
+import Animated from 'react-native-reanimated';
+import {__WINDOW_HEIGHT, __WINDOW_WIDTH} from '../layout/Layout';
 
 type Props = {
   navigation: NavigationScreenProp<any, any>;
@@ -21,10 +23,12 @@ const CardHolder = styled(View)`
   padding-right: 16px;
 `;
 
+const {Value, call} = Animated;
 export default withNavigation((props: Props) => {
   const [recipeEvaluation, setRecipeEvaluation] = useState<RecipeEvaluation>(
     null,
   );
+  const x = new Value(0);
   const swiperRef = useRef<Swiper>();
   // like componentDidMounts
   useEffect(() => {
@@ -41,11 +45,19 @@ export default withNavigation((props: Props) => {
       <CardHolder key="recipe">
         <RecipeDetail
           onGoToShopping={() => {
+            // @ts-ignore
             swiperRef.current.scrollBy(1);
           }}
           ingredientEvaluation={recipeEvaluation.ingredientEvaluation}
           recipe={recipeEvaluation.recipe}
         />
+        <Animated.Code>
+          {() =>
+            call([x], ([x]) => {
+              console.log({x});
+            })
+          }
+        </Animated.Code>
       </CardHolder>,
     ];
     const possibilities = recipeEvaluation.possibilities.map(p => {

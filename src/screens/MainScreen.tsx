@@ -4,6 +4,7 @@ import {MyView, SPACING} from '../layout/Layout';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import {
   ActivityIndicator,
+  Alert,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -155,9 +156,15 @@ class MainScreen extends React.Component<Props, State> {
     recipes: null,
   };
   componentDidMount() {
-    apiRequest('/recipes').then(recipes => {
-      this.setState({recipes});
-    });
+    console.log('rendering...');
+    apiRequest('/recipes')
+      .then(recipes => {
+        console.log(recipes);
+        this.setState({recipes});
+      })
+      .catch(e => {
+        Alert.alert(String(e));
+      });
   }
 
   render() {

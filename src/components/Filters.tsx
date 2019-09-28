@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {MyView, SPACING, TextBold, TextRegular} from '../layout/Layout';
+import {MyView, SPACING, TextBold} from '../layout/Layout';
 import Season from '../assets/icons/season.svg';
 import Price from '../assets/icons/price.svg';
 import CO2 from '../assets/icons/co2.svg';
@@ -12,7 +12,7 @@ export const Container = styled(TouchableOpacity)`
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: ${SPACING * 3}px;
-  margin-top: ${SPACING * 2}px;
+  margin-top: ${SPACING * 2}px;$
 `;
 const SIZE = 40;
 const BallContainer = styled(MyView)`

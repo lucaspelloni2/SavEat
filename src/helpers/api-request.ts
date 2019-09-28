@@ -1,5 +1,5 @@
 export default async (path: string) => {
-  const response = await fetch(`http://localhost:9000${path}`);
+  const response = await fetch(`https://makachange.herokuapp.com${path}`);
   const json = await response.json();
   if (json.success) {
     return json.data;
