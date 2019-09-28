@@ -63,7 +63,7 @@ export default withNavigation((props: Props) => {
     });
     const comparison = [
       <CardHolder key={'comparison'}>
-        <Comparison recipe={possibilities} />
+        <Comparison recipe={recipeEvaluation.recipe} possibilities={recipeEvaluation.possibilities} />
       </CardHolder>,
     ];
     return [...comparison, children, ...possibilities, ...comparison];
