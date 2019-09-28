@@ -37,7 +37,7 @@ export default (props: {
       </View>
       <Text>
         {props.evaluation.positiveRemarks.map(positiveRm => (
-          <Text style={{color: getCo2Hue(0)}} key={positiveRm.message}>
+          <Text style={{color: __COLORS.SECONDARY}} key={positiveRm.message}>
             {positiveRm.message}
             <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
           </Text>

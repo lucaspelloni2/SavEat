@@ -35,14 +35,16 @@ export default (props: {
       <Text style={{fontFamily: __FONT_FAMILIES.REGULAR}}>
         {props.ingredient.positiveRemarks.map(r => {
           return (
-            <Text style={{color: getCo2Hue(0)}} key={r.message}>
+            <Text style={{color: __COLORS.SECONDARY}} key={r.message}>
               {r.message} ∙{' '}
             </Text>
           );
         })}
         {props.ingredient.negativeRemarks.map(r => {
           return (
-            <Text style={{color: getCo2Hue(1000)}} key={r.message}>
+            <Text
+              style={{color: getCo2Hue(1000), fontWeight: 'bold'}}
+              key={r.message}>
               {r.message} ∙{' '}
             </Text>
           );
