@@ -1,16 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  MyView,
-  SPACING,
-  TextExtraBold,
-  TextRegular,
-  Wrapper,
-} from '../layout/Layout';
+import {MyView, SPACING, Wrapper} from '../layout/Layout';
 import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import {
   ActivityIndicator,
-  Image,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -239,8 +232,8 @@ class MainScreen extends React.Component<Props, State> {
               onChangeFocus={() => {
                 this.setState({isOnFocus: true});
               }}
-              onTextChange={(searchValue: string) => {
-                this.setState({searchValue});
+              onTextChange={(newSearchValue: string) => {
+                this.setState({searchValue: newSearchValue});
                 // TODO: perform call
               }}
               placeholder={'Search your recipe'}

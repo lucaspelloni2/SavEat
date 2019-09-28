@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Image, StyleSheet, View} from 'react-native';
-import {MyView, SPACING, TextBold, TextRegular} from '../layout/Layout';
+import {MyView, SPACING, TextBold} from '../layout/Layout';
 import {__COLORS} from '../layout/Colors';
-import {getAlphaColor} from '../layout/AlphaColor';
-import {Filters} from './Filters';
 
 export type Ingredients = {
   id: string;

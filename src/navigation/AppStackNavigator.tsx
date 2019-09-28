@@ -16,7 +16,7 @@ export const OnBoardingStackNavigator = createStackNavigator(
     [__SCREENS.APP]: {
       screen: MainScreen,
       path: __SCREENS.APP,
-      navigationOptions: ({navigation}: NavigationProps) => ({
+      navigationOptions: (_: NavigationProps) => ({
         header: null,
       }),
       headerTransparent: true,
