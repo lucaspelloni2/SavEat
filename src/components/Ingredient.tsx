@@ -9,6 +9,8 @@ import {
 import {MyView, TextBold, TextExtraBold, TextRegular} from '../layout/Layout';
 import {Image, StyleSheet} from 'react-native';
 import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
+import IngredientEvaluationView from './IngredientEvaluationView';
+import Card from './Card';
 
 type Props = {
   ingredient: ProductWithCarbonProjection;
@@ -41,7 +43,7 @@ export const Ingredient = ({ingredient}: Props) => {
   const price = product.price; // rappe
   const co2offset = ingredient.co2Offset;
   const color = ingredient.product.colors;
-  console.log(color);
+  console.log(co2offset);
 
   return (
     <Container>
