@@ -31,21 +31,19 @@ export default (props: {
       <View style={{flexDirection: 'row'}}>
         <Text>{props.evaluation.product.name}</Text>
         <View style={{flex: 1}} />
-        <Text>{renderPrice(props.evaluation.product.price)}</Text>
+        <Text style={{color: '#333'}}>
+          {renderPrice(props.evaluation.product.price)}
+        </Text>
       </View>
       <Text>
         {props.evaluation.positiveRemarks.map(positiveRm => (
-          <Text
-            style={{fontWeight: 'bold', color: getCo2Hue(0)}}
-            key={positiveRm.message}>
+          <Text style={{color: getCo2Hue(0)}} key={positiveRm.message}>
             {positiveRm.message}
             <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
           </Text>
         ))}
         {props.evaluation.negativeRemarks.map(negativeRm => (
-          <Text
-            key={negativeRm.message}
-            style={{fontWeight: 'bold', color: getCo2Hue(1000)}}>
+          <Text key={negativeRm.message} style={{color: getCo2Hue(1000)}}>
             {negativeRm.message}
             <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
           </Text>

@@ -42,9 +42,7 @@ export default (props: {
         })}
         {props.ingredient.negativeRemarks.map(r => {
           return (
-            <Text
-              style={{color: getCo2Hue(1000), fontWeight: 'bold'}}
-              key={r.message}>
+            <Text style={{color: getCo2Hue(1000)}} key={r.message}>
               {r.message} ∙{' '}
             </Text>
           );
