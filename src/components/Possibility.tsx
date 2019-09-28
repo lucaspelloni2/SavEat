@@ -5,6 +5,7 @@ import Card from './Card';
 import {Flex, MyView, TextBold} from '../layout/Layout';
 import styled from 'styled-components';
 import {Ingredients} from './Ingredients';
+import OverallScore from './OverallScore';
 
 const StoresView = styled(MyView)`
   flex-direction: row;
@@ -56,6 +57,7 @@ export default (props: {possibility: RecipeEvaluationPossibility}) => {
         <Flex number={store === 'COOP' ? 0 : 1} />
       </StoresView>
       <Card>
+        <OverallScore />
         <Ingredients ingredients={possibility.ingredients} />
       </Card>
     </>

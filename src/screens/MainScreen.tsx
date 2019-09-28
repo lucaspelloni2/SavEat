@@ -135,10 +135,10 @@ const AnimatedTitle = ({isOnFocus}: TitleProps) => {
           {marginTop},
           {opacity},
         ]}>
-        Makachange.
+        Saveat.
       </Animated.Text>
       <Animated.Text style={[titleStyle.subTitle, {opacity}]}>
-        It's so easy.
+        Make a change. It's easy.
       </Animated.Text>
     </>
   );

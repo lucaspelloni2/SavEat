@@ -8,6 +8,11 @@ export enum __COLORS {
   TEXT_COLOR = '#fff',
 }
 
+export enum CO2Colors {
+  VERY_BAD = 'red',
+  BAD = '#ff7e67',
+}
+
 export enum __GRAY_COLORS {
   _WHITE = '#fff',
   _100 = '#f6f9fc',

@@ -74,7 +74,7 @@ export class Ingredients extends Component<Props, {}> {
       <View
         key={index}
         style={{backgroundColor: 'red', width: 300, height: 200}}>
-        <Ingredient ingredient={i} />
+        <Ingredient ingredient={i.product} />
       </View>
     );
   }
@@ -82,6 +82,8 @@ export class Ingredients extends Component<Props, {}> {
   render() {
     return (
       <Carousel
+        layout={'stack'}
+        layoutCardOffset={`18`}
         ref={c => {
           this._carousel = c;
         }}
