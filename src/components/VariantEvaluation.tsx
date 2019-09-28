@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {__COLORS} from '../layout/Colors';
 import getCo2Hue from '../helpers/get-co2-hue';
+import renderPrice from '../helpers/render-price';
 
 const Container = styled(View)`
   padding-left: 16px;
@@ -30,22 +31,31 @@ export default (props: {
       <View style={{flexDirection: 'row'}}>
         <Text>{props.evaluation.product.name}</Text>
         <View style={{flex: 1}} />
-        <Text>{props.evaluation.product.price}</Text>
+        <Text>{renderPrice(props.evaluation.product.price)}</Text>
       </View>
       <Text>
         {props.evaluation.positiveRemarks.map(positiveRm => (
-          <Text style={{fontWeight: 'bold'}}>
+          <Text
+            style={{fontWeight: 'bold', color: getCo2Hue(0)}}
+            key={positiveRm.message}>
             {positiveRm.message}
-            {' ∙ '}
+            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
           </Text>
         ))}
         {props.evaluation.negativeRemarks.map(negativeRm => (
-          <Text style={{fontWeight: 'bold', color: getCo2Hue(1000)}}>
+          <Text
+            key={negativeRm.message}
+            style={{fontWeight: 'bold', color: getCo2Hue(1000)}}>
             {negativeRm.message}
-            {' ∙ '}
+            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
           </Text>
         ))}
-        <Text>{formatCo2(props.evaluation.co2Offset)} CO₂</Text>
+        <Text
+          style={{
+            color: getCo2Hue(props.evaluation.co2Offset),
+          }}>
+          {formatCo2(props.evaluation.co2Offset)} CO₂
+        </Text>
       </Text>
     </Container>
   );

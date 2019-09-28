@@ -69,7 +69,7 @@ export default (props: {
         <Ingredients ingredients={possibility.ingredients} />
         <View style={{height: 12}} />
         {possibility.ingredients.map((i, idx) => (
-          <View>
+          <View key={idx}>
             {i.products.length > 0 ? (
               <>
                 <VariantEvaluation
