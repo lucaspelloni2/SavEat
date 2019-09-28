@@ -2,6 +2,7 @@ export enum __COLORS {
   PRIMARY = '#42b883',
   SECONDARY = '#0A554C',
   TEARTIARY = '#ff7e67',
+  TEARTIARY_LIGHT = '#F2DBCE',
   APP_BACKGROUND = '#fff',
   WHITE = '#fff',
   TEXT_COLOR = '#fff',

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View} from 'react-native';
 import Card from './Card';
 import {
   Recipe,
@@ -10,6 +10,11 @@ import {__FONT_FAMILIES} from '../layout/Fonts';
 import styled from 'styled-components';
 import CoolDots from './CoolDots';
 import NumberOfPeoplePicker from './NumberOfPeoplePicker';
+import formatCo2 from '../layout/formatCo2';
+import getCo2Hue from '../helpers/get-co2-hue';
+import IngredientEvaluationView from './IngredientEvaluationView';
+import {getAlphaColor} from '../layout/AlphaColor';
+import {__COLORS} from '../layout/Colors';
 
 export const renderFoodName = (ingredient: RecipeIngredient): string => {
   if (ingredient.labelOverride) {
@@ -36,17 +41,23 @@ export default (props: {
       <View style={{height: 10}} />
       <CoolDots />
       <NumberOfPeoplePicker people={people} setPeople={setPeople} />
-      {props.ingredientEvaluation.map(i => {
+
+      {props.ingredientEvaluation.map((i, idx) => {
         return (
-          <View key={i.label}>
-            <Text>
-              {i.perPerson * people}
-              {i.unit} {i.label}
-            </Text>
-            <Text>{i.averageCarbonEmission * i.perPerson * people}</Text>
-          </View>
+          <IngredientEvaluationView
+            grayed={idx % 2 === 0}
+            key={i.label}
+            people={people}
+            ingredient={i}
+          />
         );
       })}
+      <View
+        style={{
+          borderColor: getAlphaColor(0.3, __COLORS.TEARTIARY),
+          borderWidth: 1,
+        }}
+      />
     </Card>
   );
 };

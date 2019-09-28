@@ -33,7 +33,7 @@ const ChangeLabel = styled(Text)`
 `;
 
 const ForHowManyPeopleLabel = styled(Text)`
-  font-family: ${__FONT_FAMILIES.REGULAR};
+  font-family: ${__FONT_FAMILIES.BOLD};
 `;
 
 export default (props: {
