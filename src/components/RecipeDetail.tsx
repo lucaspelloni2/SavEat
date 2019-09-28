@@ -6,6 +6,9 @@ import {
   RecipeIngredient,
   IngredientEvaluation,
 } from '../helpers/backend-types';
+import {__FONT_FAMILIES} from '../layout/Fonts';
+import styled from 'styled-components';
+import CoolDots from './CoolDots';
 
 export const renderFoodName = (ingredient: RecipeIngredient): string => {
   if (ingredient.labelOverride) {
@@ -14,14 +17,23 @@ export const renderFoodName = (ingredient: RecipeIngredient): string => {
   return ingredient.food;
 };
 
+const Title = styled(Text)`
+  text-align: center;
+  font-size: 24px;
+`;
+
 export default (props: {
   recipe: Recipe;
   ingredientEvaluation: IngredientEvaluation[];
 }) => {
   const [people, setPeople] = useState<number>(2);
   return (
-    <Card>
-      <Text>{props.recipe.name}</Text>
+    <Card style={{paddingTop: 30}}>
+      <Title style={{fontFamily: __FONT_FAMILIES.EXTRA_BOLD}}>
+        {props.recipe.name}
+      </Title>
+      <View style={{height: 10}} />
+      <CoolDots />
       <Text>
         For {people} {people === 1 ? 'person' : 'people'}
       </Text>
