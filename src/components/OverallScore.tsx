@@ -75,13 +75,15 @@ class OverallScore extends React.PureComponent<Props, {}> {
     });
     let overallScore = avarage / scores.length;
 
+    let ratio = scores.filter(x => x > 200).length === 0 ? 4 : scores.filter(x => x > 500).length === 0 ? 7 : 10;
+
     const data = scores.map((key, index) => {
       return {
         key,
         value: scores[index],
         svg: {fill: colors[index]},
         arc: {
-          outerRadius: 70 + scores[index] / 5.6 + '%',
+          outerRadius: 70 + scores[index] / ratio + '%',
           padAngle: 0.01,
         },
         onPress: () =>
