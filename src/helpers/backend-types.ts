@@ -35,7 +35,6 @@ export type RecipeIngredient = {
   food: FoodCategory;
   gram: number;
   labelOverride?: string;
-  image: string;
 };
 
 export type Remark = {
@@ -53,12 +52,15 @@ export type IngredientEvaluation = {
   negativeRemarks: Remark[];
 };
 
+export type FilterMatch = 'budget' | 'season' | 'emission';
+
 export type Recipe = {
   name: string;
   slug: string;
   ingredients: RecipeIngredient[];
   instructions: string;
   image: string;
+  filters: FilterMatch[];
 };
 
 export type ProductWithCarbonProjection = {
