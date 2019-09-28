@@ -9,6 +9,7 @@ import {
 import {__FONT_FAMILIES} from '../layout/Fonts';
 import styled from 'styled-components';
 import CoolDots from './CoolDots';
+import NumberOfPeoplePicker from './NumberOfPeoplePicker';
 
 export const renderFoodName = (ingredient: RecipeIngredient): string => {
   if (ingredient.labelOverride) {
@@ -34,23 +35,7 @@ export default (props: {
       </Title>
       <View style={{height: 10}} />
       <CoolDots />
-      <Text>
-        For {people} {people === 1 ? 'person' : 'people'}
-      </Text>
-      <TouchableOpacity
-        disabled={people === 1}
-        onPress={() => {
-          setPeople(p => p - 1);
-        }}>
-        <Text>Decrease</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        disabled={people === 15}
-        onPress={() => {
-          setPeople(p => p + 1);
-        }}>
-        <Text>Increase</Text>
-      </TouchableOpacity>
+      <NumberOfPeoplePicker people={people} setPeople={setPeople} />
       {props.ingredientEvaluation.map(i => {
         return (
           <View key={i.label}>
