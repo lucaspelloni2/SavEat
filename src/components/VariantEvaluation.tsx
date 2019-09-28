@@ -30,51 +30,56 @@ export default (props: {
           : 'white',
       }}>
       <View style={{flexDirection: 'row'}}>
-        <View>
-          <Text style={{fontFamily: __FONT_FAMILIES.REGULAR}}>
-            {props.evaluation.product.name}
+        <View style={{flex: 1}}>
+          <View>
+            <View>
+              <Text style={{fontFamily: __FONT_FAMILIES.REGULAR}}>
+                {props.evaluation.product.name}
+              </Text>
+            </View>
+          </View>
+          <Text>
+            <Text
+              style={{
+                color: getCo2Hue(props.evaluation.co2Offset),
+                fontWeight: 'bold',
+              }}>
+              {formatCo2(props.evaluation.co2Offset)} CO₂
+            </Text>
+
+            {props.evaluation.negativeRemarks.map(negativeRm => (
+              <Text
+                key={negativeRm.message}
+                style={{
+                  fontFamily: __FONT_FAMILIES.REGULAR,
+                  color: getCo2Hue(1000),
+                }}>
+                <Text style={{color: 'black', fontFamily: 'Arial'}}>
+                  {' ∙ '}
+                </Text>
+                {negativeRm.message}
+              </Text>
+            ))}
+            {props.evaluation.positiveRemarks.map(positiveRm => (
+              <Text
+                style={{
+                  fontFamily: __FONT_FAMILIES.REGULAR,
+
+                  color: __COLORS.SECONDARY,
+                }}
+                key={positiveRm.message}>
+                <Text style={{color: 'black', fontFamily: 'Arial'}}>
+                  {' ∙ '}
+                </Text>
+                {positiveRm.message}
+              </Text>
+            ))}
           </Text>
         </View>
-        <View style={{flex: 1}} />
         <View>
-          <Text style={{color: '#333'}}>
-            {renderPrice(props.evaluation.product.price)}
-          </Text>
+          <Text>{renderPrice(props.evaluation.product.price)}</Text>
         </View>
       </View>
-      <Text>
-        <Text
-          style={{
-            color: getCo2Hue(props.evaluation.co2Offset),
-            fontWeight: 'bold',
-          }}>
-          {formatCo2(props.evaluation.co2Offset)} CO₂
-        </Text>
-
-        {props.evaluation.negativeRemarks.map(negativeRm => (
-          <Text
-            key={negativeRm.message}
-            style={{
-              fontFamily: __FONT_FAMILIES.REGULAR,
-              color: getCo2Hue(1000),
-            }}>
-            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
-            {negativeRm.message}
-          </Text>
-        ))}
-        {props.evaluation.positiveRemarks.map(positiveRm => (
-          <Text
-            style={{
-              fontFamily: __FONT_FAMILIES.REGULAR,
-
-              color: __COLORS.SECONDARY,
-            }}
-            key={positiveRm.message}>
-            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
-            {positiveRm.message}
-          </Text>
-        ))}
-      </Text>
     </Container>
   );
 };
