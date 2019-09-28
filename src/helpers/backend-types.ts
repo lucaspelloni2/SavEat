@@ -1,5 +1,6 @@
 // Just copy pasted from backend
 import {FoodCategory} from './food-categories';
+import {DominantColors} from './color-palette-type';
 
 export type CoopSearchResult = {
   name: string;
@@ -27,6 +28,7 @@ export type Product = {
   baseUnit: WeightUnit;
   image: string | null;
   labels: Label[];
+  color: DominantColors | null;
 };
 
 export type RecipeIngredient = {
