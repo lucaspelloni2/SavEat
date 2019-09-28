@@ -7,6 +7,7 @@ import CO2 from '../assets/icons/co2.svg';
 import {__COLORS} from '../layout/Colors';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {TouchableOpacity, View} from 'react-native';
+import {FilterMatch} from '../helpers/backend-types';
 
 export const Container = styled(View)`
   flex-direction: row;
@@ -70,7 +71,6 @@ export const Filters = (props: {
       {Types.map(t => {
         return (
           <BallContainer
-            underlayColor="rgba(220, 220, 220, 1)"
             key={t.name}
             onPress={() => {
               props.onFilterChange(t.filter);

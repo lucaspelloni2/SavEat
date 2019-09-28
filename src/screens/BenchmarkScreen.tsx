@@ -3,7 +3,7 @@ import {NavigationScreenProp, withNavigation} from 'react-navigation';
 import Swiper from 'react-native-swiper';
 import FullscreenBackground from '../layout/FullscreenBackground';
 import apiRequest from '../helpers/api-request';
-import {View, ActivityIndicator, StyleSheet, Dimensions} from 'react-native';
+import {View, ActivityIndicator, Dimensions} from 'react-native';
 import {RecipeEvaluation} from '../helpers/backend-types';
 import Possibility from '../components/Possibility';
 import RecipeDetail from '../components/RecipeDetail';
@@ -44,6 +44,7 @@ export default withNavigation((props: Props) => {
       <CardHolder key="recipe">
         <RecipeDetail
           onGoToShopping={() => {
+            // @ts-ignore
             swiperRef.current.scrollBy(1);
           }}
           ingredientEvaluation={recipeEvaluation.ingredientEvaluation}

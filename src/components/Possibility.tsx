@@ -1,11 +1,15 @@
 import React from 'react';
+
 import {Recipe, RecipeEvaluationPossibility} from '../helpers/backend-types';
-import {View, ScrollView, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import Card from './Card';
-import {Flex, MyView, TextBold} from '../layout/Layout';
+import {Flex, MyView} from '../layout/Layout';
 import styled from 'styled-components';
 import {Ingredients} from './Ingredients';
 import OverallScore from './OverallScore';
+import VariantEvaluation from './VariantEvaluation';
+import {getAlphaColor} from '../layout/AlphaColor';
+import {__COLORS} from '../layout/Colors';
 
 const StoresView = styled(MyView)`
   flex-direction: row;
@@ -64,6 +68,26 @@ export default (props: {
           overallScore={100}
         />
         <Ingredients ingredients={possibility.ingredients} />
+        <View style={{height: 12}} />
+        {possibility.ingredients.map((i, idx) => (
+          <View key={idx}>
+            {i.products.length > 0 ? (
+              <>
+                <VariantEvaluation
+                  grayed={idx % 2 === 0}
+                  evaluation={i.products[0]}
+                />
+              </>
+            ) : null}
+          </View>
+        ))}
+        <View
+          style={{
+            borderColor: getAlphaColor(0.1, __COLORS.TEARTIARY),
+            borderWidth: 1,
+            marginBottom: 50,
+          }}
+        />
       </Card>
     </>
   );

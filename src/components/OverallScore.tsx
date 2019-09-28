@@ -122,6 +122,17 @@ class OverallScore extends React.PureComponent<Props, {}> {
           ]}>
           {Math.round(this.props.overallScore).toFixed(0)}
         </TextRegular>
+        <TextLight
+          fontSize={11}
+          style={{
+            top: 105,
+            color: __GRAY_COLORS._700,
+            position: 'absolute',
+            left: deviceWidth / 2 - labelWidth / 2 - 4,
+            textAlign: 'center',
+          }}>
+          CO2 KG
+        </TextLight>
       </View>
     );
   }
