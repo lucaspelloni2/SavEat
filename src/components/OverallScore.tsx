@@ -107,7 +107,7 @@ class OverallScore extends React.PureComponent<Props, {}> {
             left: deviceWidth / 2 - labelWidth / 2 - 4,
             textAlign: 'center',
           }}>
-          C02 KG
+          CO2 KG
         </TextLight>
       </View>
     );
