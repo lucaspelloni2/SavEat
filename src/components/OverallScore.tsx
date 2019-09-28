@@ -5,12 +5,19 @@ import {PieChart} from 'react-native-svg-charts';
 import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
 import getCo2Hue from '../helpers/get-co2-hue';
 import {__WINDOW_WIDTH, MyView, TextLight, TextRegular} from '../layout/Layout';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import {getAlphaColor} from '../layout/AlphaColor';
+import {Recipe} from '../helpers/backend-types';
 
-type Props = {score: number};
+type Props = {score: number; recipe: Recipe};
 
-const Container = styled(MyView)``;
+const Overlay = styled(MyView)``;
+
+const Container = styled(MyView)`
+  position: absolute;
+  width: ${__WINDOW_WIDTH / 1.75}px;
+  height: 170px;
+`;
 
 const Shadow = StyleSheet.create({
   shadow: {
@@ -59,20 +66,38 @@ class OverallScore extends React.PureComponent<Props, {}> {
       };
     });
     const deviceWidth = __WINDOW_WIDTH;
-
+    console.log(this.props.recipe.image);
     return (
       <View
         style={[
           {
             paddingTop: 20,
-            paddingBottom: 20,
             backgroundColor: getAlphaColor(0.2, __COLORS.PRIMARY),
             width: __WINDOW_WIDTH,
+            flex: 1,
           },
           Shadow.shadow,
         ]}>
+        <Container>
+          <Image
+            source={{uri: this.props.recipe.image}}
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+          />
+          <Overlay
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+              backgroundColor: getAlphaColor(0.2, __GRAY_COLORS._BLACK),
+            }}
+          />
+        </Container>
+
         <PieChart
-          style={{height: 150}}
+          style={{height: 150, marginLeft: 210, paddingBottom: 20}}
           outerRadius={'70%'}
           innerRadius={'50%'}
           data={data}
@@ -89,14 +114,14 @@ class OverallScore extends React.PureComponent<Props, {}> {
           }}
           style={[
             {
-              top: 75,
+              top: 70,
               color: __GRAY_COLORS._BLACK,
               position: 'absolute',
-              left: deviceWidth / 2 - labelWidth / 2 + 1,
+              right: 65,
               textAlign: 'center',
             },
           ]}>
-          {this.props.score}
+          {Math.round(this.props.score).toFixed(0)}
         </TextRegular>
         <TextLight
           fontSize={11}

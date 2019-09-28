@@ -55,7 +55,7 @@ export default withNavigation((props: Props) => {
     const possibilities = recipeEvaluation.possibilities.map(p => {
       return (
         <CardHolder key={p.store}>
-          <Possibility possibility={p} />
+          <Possibility possibility={p} recipe={recipeEvaluation.recipe} />
         </CardHolder>
       );
     });

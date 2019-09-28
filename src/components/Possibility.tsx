@@ -1,5 +1,6 @@
 import React from 'react';
-import {RecipeEvaluationPossibility} from '../helpers/backend-types';
+
+import {Recipe, RecipeEvaluationPossibility} from '../helpers/backend-types';
 import {View, Image} from 'react-native';
 import Card from './Card';
 import {Flex, MyView} from '../layout/Layout';
@@ -32,7 +33,10 @@ const getImage = (store: string) => {
   }
 };
 
-export default (props: {possibility: RecipeEvaluationPossibility}) => {
+export default (props: {
+  possibility: RecipeEvaluationPossibility;
+  recipe: Recipe;
+}) => {
   const possibility = props.possibility;
   const {store} = possibility;
   // @ts-ignore
@@ -59,6 +63,7 @@ export default (props: {possibility: RecipeEvaluationPossibility}) => {
       </StoresView>
       <Card>
         <OverallScore
+          recipe={props.recipe}
           score={possibility.ingredients[0].products[0].co2Offset}
         />
         <Ingredients ingredients={possibility.ingredients} />
