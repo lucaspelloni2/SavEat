@@ -154,7 +154,6 @@ class MainScreen extends React.Component<Props, State> {
     console.log('rendering...');
     apiRequest('/recipes')
       .then(recipes => {
-        console.log(recipes);
         this.setState({recipes});
       })
       .catch(e => {

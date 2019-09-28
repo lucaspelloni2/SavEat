@@ -55,15 +55,6 @@ type Props = {
   ingredients: RecipeEvaluationPossibilityIngredient[];
 };
 
-const Shadow = StyleSheet.create({
-  shadow: {
-    shadowColor: 'rgba(0,0,0, .3)',
-    shadowOffset: {height: 10, width: 10},
-    shadowOpacity: 50,
-    shadowRadius: 5,
-  },
-});
-
 export class Ingredients extends Component<Props, {}> {
   state = {
     entries: [{title: '1ajsfjoajsf'}, {title: '2ajosfjoajof'}],
@@ -80,7 +71,6 @@ export class Ingredients extends Component<Props, {}> {
     if (!item.products.length) {
       return <TextBold>No ingredients</TextBold>;
     }
-    console.log('is active ', item.products[0].product.name);
     return (
       <View
         key={index}
@@ -90,13 +80,12 @@ export class Ingredients extends Component<Props, {}> {
             marginTop: 10,
             height: 200,
             backgroundColor: 'transparent',
-            borderWidth: 1,
-            borderColor: __GRAY_COLORS._300,
+
             borderRadius: 10,
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 10
+            padding: 10,
           },
         ]}>
         <Ingredient ingredient={i} />

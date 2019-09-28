@@ -30,15 +30,31 @@ const Name = styled(TextExtraBold)`
   text-align: center;
 `;
 
+const CO2 = styled(TextRegular)`
+  color: ${__GRAY_COLORS._BLACK};
+  margin-top: 12px;
+  text-align: center;
+`;
+
 const Separator = styled(MyView)<{color: string}>`
   width: 10px;
   height: 4px;
   background: ${props => props.color};
 `;
 
-export const Ingredient = ({ingredient}: Props) => {
-  console.log(ingredient);
+const Shadow = StyleSheet.create({
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+  },
+});
 
+export const Ingredient = ({ingredient}: Props) => {
   const {product} = ingredient;
   const price = product.price; // rappe
   const co2offset = ingredient.co2Offset;
@@ -57,6 +73,7 @@ export const Ingredient = ({ingredient}: Props) => {
         />
       </ImageContainer>
       <Name fontSize={14}>{product.name}</Name>
+      <CO2 fontSize={14}>{Math.round(co2offset).toFixed(0)} CO2</CO2>
     </Container>
   );
 };
