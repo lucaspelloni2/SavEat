@@ -6,16 +6,17 @@ import Price from '../assets/icons/price.svg';
 import CO2 from '../assets/icons/co2.svg';
 import {__COLORS} from '../layout/Colors';
 import {getAlphaColor} from '../layout/AlphaColor';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {FilterMatch} from '../helpers/backend-types';
 
-export const Container = styled(TouchableOpacity)`
+export const Container = styled(View)`
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: ${SPACING * 3}px;
-  margin-top: ${SPACING * 2}px;$
+  margin-top: ${SPACING * 2}px;
 `;
 const SIZE = 40;
-const BallContainer = styled(MyView)`
+const BallContainer = styled(TouchableOpacity)`
   flex-direction: column;
   align-items: center;
 `;
@@ -37,21 +38,36 @@ const Name = styled(TextBold)`
 
 const IconContainer = styled(MyView)``;
 
-const Types = [
+type FilterType = {
+  name: string;
+  icon: React.ReactNode;
+  filter: FilterMatch;
+};
+
+const Types: FilterType[] = [
   {
     name: 'Emissions',
+    filter: 'emission',
     icon: <CO2 width={SIZE} height={SIZE} color={__COLORS.TEARTIARY} />,
   },
-  {name: 'Season', icon: <Season width={SIZE} height={SIZE} />},
-  {name: 'Price', icon: <Price width={SIZE} height={SIZE} />},
+  {
+    name: 'Season',
+    filter: 'season',
+    icon: <Season width={SIZE} height={SIZE} />,
+  },
+  {name: 'Price', filter: 'budget', icon: <Price width={SIZE} height={SIZE} />},
 ];
 
-export const Filters = () => {
+export const Filters = (props: {onFilterChange: (f: FilterMatch) => void}) => {
   return (
     <Container>
       {Types.map(t => {
         return (
-          <BallContainer key={t.name}>
+          <BallContainer
+            key={t.name}
+            onPress={() => {
+              props.onFilterChange(t.filter);
+            }}>
             <Ball>
               <IconContainer>{t.icon}</IconContainer>
             </Ball>

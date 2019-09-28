@@ -22,7 +22,7 @@ import {Filters} from '../components/Filters';
 import {__SCREENS} from '../navigation/Screens';
 import FullscreenBackground from '../layout/FullscreenBackground';
 import apiRequest from '../helpers/api-request';
-import {Recipe} from '../helpers/backend-types';
+import {Recipe, FilterMatch} from '../helpers/backend-types';
 
 const Recipes = styled(ScrollView)`
   margin-top: ${SPACING}px;
@@ -37,6 +37,7 @@ type State = {
   searchValue: string;
   isOnFocus: boolean;
   recipes: Recipe[] | null;
+  filter: FilterMatch;
 };
 
 const titleStyle = StyleSheet.create({
@@ -149,6 +150,7 @@ class MainScreen extends React.Component<Props, State> {
     searchValue: '',
     isOnFocus: false,
     recipes: null,
+    filter: null,
   };
   componentDidMount() {
     console.log('rendering...');
@@ -192,23 +194,36 @@ class MainScreen extends React.Component<Props, State> {
           </View>
 
           <Recipes contentContainerStyle={{paddingLeft: 16, paddingRight: 16}}>
-            <Filters />
+            <Filters
+              onFilterChange={filter => {
+                this.setState({
+                  filter,
+                });
+              }}
+            />
             {!recipes ? (
               <ActivityIndicator size="small" color="#fff" />
             ) : (
-              recipes.map((r: Recipe) => {
-                return (
-                  <TouchableOpacity
-                    key={r.slug}
-                    onPress={() => {
-                      navigation.navigate(__SCREENS.BENCHMARK, {
-                        id: r.slug,
-                      });
-                    }}>
-                    <RecipePreview recipe={r} />
-                  </TouchableOpacity>
-                );
-              })
+              recipes
+                .filter(f => {
+                  if (this.state.filter) {
+                    return true;
+                  }
+                  return f.filters.indexOf(this.state.filter) > -1;
+                })
+                .map((r: Recipe) => {
+                  return (
+                    <TouchableOpacity
+                      key={r.slug}
+                      onPress={() => {
+                        navigation.navigate(__SCREENS.BENCHMARK, {
+                          id: r.slug,
+                        });
+                      }}>
+                      <RecipePreview recipe={r} />
+                    </TouchableOpacity>
+                  );
+                })
             )}
           </Recipes>
         </View>
