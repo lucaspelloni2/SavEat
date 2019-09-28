@@ -2,17 +2,11 @@ import React from 'react';
 import {RecipeEvaluationPossibility} from '../helpers/backend-types';
 import styled from 'styled-components';
 import {View, Text, Image} from 'react-native';
-
-const Container = styled(View)`
-  background: white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  flex: 1;
-`;
+import Card from './Card';
 
 export default (props: {possibility: RecipeEvaluationPossibility}) => {
   return (
-    <Container>
+    <Card>
       <Text>{props.possibility.store}</Text>
 
       {props.possibility.ingredients.map(ingredient => {
@@ -30,9 +24,11 @@ export default (props: {possibility: RecipeEvaluationPossibility}) => {
             />
             <Text>{ingredient.products[0].food}</Text>
             <Text>{ingredient.products[0].name}</Text>
+            <Text>{ingredient.products[0].origin}</Text>
+            <Text>{ingredient.products[0].price / 100} Fr</Text>
           </View>
         );
       })}
-    </Container>
+    </Card>
   );
 };

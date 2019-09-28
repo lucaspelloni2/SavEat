@@ -35,6 +35,20 @@ export type RecipeIngredient = {
   labelOverride?: string;
 };
 
+export type Remark = {
+  message: string;
+};
+
+export type IngredientEvaluation = {
+  label: string;
+  unit: string;
+  perPerson: number;
+  food: FoodCategory;
+  averageCarbonEmission: number;
+  positiveRemarks: Remark[];
+  negativeRemarks: Remark[];
+};
+
 export type Recipe = {
   name: string;
   ingredients: RecipeIngredient[];
@@ -52,4 +66,5 @@ export type RecipeEvaluationPossibility = {
 export type RecipeEvaluation = {
   recipe: Recipe;
   possibilities: RecipeEvaluationPossibility[];
+  ingredientEvaluation: IngredientEvaluation[];
 };
