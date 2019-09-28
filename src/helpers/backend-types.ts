@@ -33,6 +33,7 @@ export type RecipeIngredient = {
   food: FoodCategory;
   gram: number;
   labelOverride?: string;
+  image: string;
 };
 
 export type Remark = {

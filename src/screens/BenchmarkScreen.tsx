@@ -17,9 +17,8 @@ type Props = {
 
 const CardHolder = styled(View)`
   flex: 1;
-  padding-top: 80px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 100px;
+
 `;
 
 const imageWidth = Dimensions.get('window').width - 32;
@@ -28,7 +27,6 @@ export default withNavigation((props: Props) => {
   const [recipeEvaluation, setRecipeEvaluation] = useState<RecipeEvaluation>(
     null,
   );
-  const x = new Value(0);
   const swiperRef = useRef<Swiper>();
   // like componentDidMounts
   useEffect(() => {
