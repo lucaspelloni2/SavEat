@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import {Recipe, RecipeEvaluationPossibility} from '../helpers/backend-types';
-import {View, Image} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import Card from './Card';
 import {Flex, MyView} from '../layout/Layout';
 import styled from 'styled-components';
@@ -10,6 +10,8 @@ import OverallScore from './OverallScore';
 import VariantEvaluation from './VariantEvaluation';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {__COLORS} from '../layout/Colors';
+import {ModalSetterContext} from '../helpers/modalize-context';
+import {TouchableHighlight} from 'react-native-gesture-handler';
 
 const StoresView = styled(MyView)`
   flex-direction: row;
@@ -39,6 +41,7 @@ export default (props: {
 }) => {
   const possibility = props.possibility;
   const {store} = possibility;
+  const setModalizeContext = useContext(ModalSetterContext);
   // @ts-ignore
   return (
     <>
@@ -72,10 +75,16 @@ export default (props: {
           <View key={idx}>
             {i.products.length > 0 ? (
               <>
-                <VariantEvaluation
-                  grayed={idx % 2 === 0}
-                  evaluation={i.products[0]}
-                />
+                <TouchableHighlight
+                  underlayColor="rgba(0, 0, 0, 0.05)"
+                  onLongPress={() => {
+                    setModalizeContext(i.products);
+                  }}>
+                  <VariantEvaluation
+                    grayed={idx % 2 === 0}
+                    evaluation={i.products[0]}
+                  />
+                </TouchableHighlight>
               </>
             ) : null}
           </View>

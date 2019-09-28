@@ -33,24 +33,9 @@ export default (props: {
         {props.ingredient.unit} {props.ingredient.label}
       </Text>
       <Text style={{fontFamily: __FONT_FAMILIES.REGULAR}}>
-        {props.ingredient.positiveRemarks.map(r => {
-          return (
-            <Text style={{color: __COLORS.SECONDARY}} key={r.message}>
-              {r.message} ∙{' '}
-            </Text>
-          );
-        })}
-        {props.ingredient.negativeRemarks.map(r => {
-          return (
-            <Text
-              style={{color: getCo2Hue(1000), fontWeight: 'bold'}}
-              key={r.message}>
-              {r.message} ∙{' '}
-            </Text>
-          );
-        })}
         <Text
           style={{
+            fontWeight: 'bold',
             color: getCo2Hue(
               props.ingredient.averageCarbonEmission *
                 props.ingredient.perPerson,
@@ -63,6 +48,21 @@ export default (props: {
           )}{' '}
           CO₂
         </Text>
+
+        {props.ingredient.positiveRemarks.map(r => {
+          return (
+            <Text style={{color: __COLORS.SECONDARY}} key={r.message}>
+              ∙ {r.message}
+            </Text>
+          );
+        })}
+        {props.ingredient.negativeRemarks.map(r => {
+          return (
+            <Text style={{color: getCo2Hue(1000)}} key={r.message}>
+              ∙ {r.message}
+            </Text>
+          );
+        })}
       </Text>
     </Container>
   );

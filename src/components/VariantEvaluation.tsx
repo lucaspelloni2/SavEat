@@ -7,6 +7,7 @@ import {getAlphaColor} from '../layout/AlphaColor';
 import {__COLORS} from '../layout/Colors';
 import getCo2Hue from '../helpers/get-co2-hue';
 import renderPrice from '../helpers/render-price';
+import {__FONT_FAMILIES} from '../layout/Fonts';
 
 const Container = styled(View)`
   padding-left: 16px;
@@ -29,31 +30,50 @@ export default (props: {
           : 'white',
       }}>
       <View style={{flexDirection: 'row'}}>
-        <Text>{props.evaluation.product.name}</Text>
+        <View>
+          <Text style={{fontFamily: __FONT_FAMILIES.REGULAR}}>
+            {props.evaluation.product.name}
+          </Text>
+        </View>
         <View style={{flex: 1}} />
-        <Text style={{color: '#333'}}>
-          {renderPrice(props.evaluation.product.price)}
-        </Text>
+        <View>
+          <Text style={{color: '#333'}}>
+            {renderPrice(props.evaluation.product.price)}
+          </Text>
+        </View>
       </View>
       <Text>
-        {props.evaluation.positiveRemarks.map(positiveRm => (
-          <Text style={{color: __COLORS.SECONDARY}} key={positiveRm.message}>
-            {positiveRm.message}
-            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
-          </Text>
-        ))}
-        {props.evaluation.negativeRemarks.map(negativeRm => (
-          <Text key={negativeRm.message} style={{color: getCo2Hue(1000)}}>
-            {negativeRm.message}
-            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
-          </Text>
-        ))}
         <Text
           style={{
             color: getCo2Hue(props.evaluation.co2Offset),
+            fontWeight: 'bold',
           }}>
           {formatCo2(props.evaluation.co2Offset)} CO₂
         </Text>
+
+        {props.evaluation.negativeRemarks.map(negativeRm => (
+          <Text
+            key={negativeRm.message}
+            style={{
+              fontFamily: __FONT_FAMILIES.REGULAR,
+              color: getCo2Hue(1000),
+            }}>
+            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
+            {negativeRm.message}
+          </Text>
+        ))}
+        {props.evaluation.positiveRemarks.map(positiveRm => (
+          <Text
+            style={{
+              fontFamily: __FONT_FAMILIES.REGULAR,
+
+              color: __COLORS.SECONDARY,
+            }}
+            key={positiveRm.message}>
+            <Text style={{color: 'black', fontFamily: 'Arial'}}>{' ∙ '}</Text>
+            {positiveRm.message}
+          </Text>
+        ))}
       </Text>
     </Container>
   );
