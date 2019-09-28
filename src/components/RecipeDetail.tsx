@@ -80,6 +80,7 @@ export default (props: {
         style={{
           borderColor: getAlphaColor(0.1, __COLORS.TEARTIARY),
           borderWidth: 1,
+          marginBottom: 50,
         }}
       />
     </Card>
