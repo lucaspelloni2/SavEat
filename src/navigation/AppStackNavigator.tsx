@@ -27,9 +27,7 @@ export const OnBoardingStackNavigator = createStackNavigator(
       path: __SCREENS.BENCHMARK,
       headerTransparent: true,
       navigationOptions: ({navigation}: NavigationProps) => ({
-        headerTitle: <TextBold>title</TextBold>,
-        headerLeft: <BackIcon navigation={navigation} />,
-        headerRight: <TextBold>right</TextBold>,
+        header: null,
       }),
     },
   },

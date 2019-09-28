@@ -6,6 +6,7 @@ import apiRequest from '../helpers/api-request';
 import {View, ActivityIndicator} from 'react-native';
 import {RecipeEvaluation} from '../helpers/backend-types';
 import {Text} from 'react-native-svg';
+import Possibility from '../components/Possibility';
 
 type Props = {
   navigation: NavigationScreenProp<any, any>;
@@ -32,8 +33,15 @@ export default withNavigation(() => {
         <Swiper>
           {recipeEvaluation.possibilities.map(p => {
             return (
-              <View style={{flex: 1}} key={p.store}>
-                <Text>{p.store}</Text>
+              <View
+                style={{
+                  flex: 1,
+                  paddingTop: 80,
+                  paddingLeft: 16,
+                  paddingRight: 16,
+                }}
+                key={p.store}>
+                <Possibility possibility={p} />
               </View>
             );
           })}
