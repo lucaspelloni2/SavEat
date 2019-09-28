@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {__COLORS} from './Colors';
 import {withNavigation} from 'react-navigation';
 
