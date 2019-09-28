@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react';
-
 import {Recipe, RecipeEvaluationPossibility} from '../helpers/backend-types';
 import {View, Image, TouchableOpacity} from 'react-native';
 import Card from './Card';
@@ -52,6 +51,20 @@ export default (props: {
 
   const setModalizeContext = useContext(ModalSetterContext);
   // @ts-ignore
+  const grams = props.recipe.ingredients.map(i => i.gram);
+  const offsets = ingredients.map(i => i.products[0].co2Offset);
+  let totalGrams = 0;
+  let totalOffset = 0;
+  for (let i = 0; i < grams.length; i++) {
+    if (!grams[i] || !offsets[i]) {
+      continue;
+    }
+    const gram = grams[i];
+    totalGrams += gram;
+    const offset = offsets[i];
+    totalOffset += offset;
+  }
+  const co2Score = (totalOffset / totalGrams) * 100;
   return (
     <>
       <StoresView>
@@ -83,6 +96,7 @@ export default (props: {
               return i.products[0] && i.products[0].co2Offset;
             })
             .filter(Boolean)}
+          co2Score={co2Score}
         />
         <Ingredients
           ingredients={ingredients}
