@@ -150,7 +150,7 @@ class OverallScore extends React.PureComponent<Props, {}> {
           }}
           style={[
             {
-              top: 73,
+              top: 68,
               color: __GRAY_COLORS._BLACK,
               position: 'absolute',
               right: 82,
@@ -159,7 +159,7 @@ class OverallScore extends React.PureComponent<Props, {}> {
           ]}>
           {Math.round(this.props.co2Score).toFixed(0)}
         </TextRegular>
-        <Text style={{fontSize: 11, position: 'absolute', right: 72, top: 100}}>
+        <Text style={{fontSize: 10, position: 'absolute', right: 72, top: 95}}>
           g CO₂/100g
         </Text>
       </View>

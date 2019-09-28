@@ -22,21 +22,8 @@ const Container = styled(MyView)`
 
 export const Comparison = ({possibilities}: Props) => {
   return (
-    <Container>
-      <MyCard color={'#FF8605'}>
-        <Image
-          source={require('../assets/images/coop_white.png')}
-          style={{width: 100}}
-          resizeMode={'contain'}
-        />
-      </MyCard>
-      <MyCard color={'#FF6600'}>
-        <Image
-          source={require('../assets/images/migros_white.png')}
-          style={{width: 100}}
-          resizeMode={'contain'}
-        />
-      </MyCard>
-    </Container>
+    <Card>
+
+    </Card>
   );
 };
