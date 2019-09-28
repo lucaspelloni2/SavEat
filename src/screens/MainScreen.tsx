@@ -22,12 +22,6 @@ const Container = styled(MyView)`
   margin-top: ${SPACING * 4}px;
 `;
 
-const Hack = styled(MyView)`
-  position: absolute;
-  top: ${SPACING * 7}px;
-  left: ${SPACING * 3.5}px;
-`;
-
 type Props = {
   navigation: NavigationScreenProp<any, any>;
 };
@@ -51,6 +45,10 @@ const titleStyle = StyleSheet.create({
     marginTop: -SPACING / 2,
     fontFamily: __FONT_FAMILIES.REGULAR,
   },
+  menu: {
+    position: 'absolute',
+    top: SPACING * 7,
+  },
 });
 
 type TitleProps = {
@@ -58,10 +56,29 @@ type TitleProps = {
 };
 
 const AnimateSalt = ({isOnFocus}: TitleProps) => {
+  let {not, interpolate} = Animated;
+  const animatedValue = isOnFocus ? 1 : 0;
+  const transition = useTransition(
+    animatedValue,
+    not(animatedValue),
+    animatedValue,
+    240,
+    Easing.ease,
+  );
+  const inputRange = [0, 1];
+  let left = interpolate(transition, {
+    inputRange,
+    outputRange: [SPACING * 3.5, -SPACING],
+  });
+  let opacity = interpolate(transition, {
+    inputRange,
+    outputRange: [1, 0],
+  });
+
   return (
-    <Hack>
+    <Animated.View style={[titleStyle.menu, {left}, {opacity}]}>
       <Menu width={30} height={30} />
-    </Hack>
+    </Animated.View>
   );
 };
 
@@ -72,7 +89,7 @@ const AnimatedTitle = ({isOnFocus}: TitleProps) => {
     animatedValue,
     not(animatedValue),
     animatedValue,
-    200,
+    250,
     Easing.ease,
   );
 
@@ -83,20 +100,36 @@ const AnimatedTitle = ({isOnFocus}: TitleProps) => {
   });
   let paddingTop = interpolate(transition, {
     inputRange,
-    outputRange: [SPACING * 15, 0],
+    outputRange: [SPACING * 15, -SPACING],
   });
   let opacity = interpolate(transition, {
     inputRange,
     outputRange: [1, 0],
   });
+
+  let marginBottom = interpolate(transition, {
+    inputRange,
+    outputRange: [0, -50],
+  });
+
+  let marginTop = interpolate(transition, {
+    inputRange,
+    outputRange: [0, 30],
+  });
   return (
     <>
       <Animated.Text
-        style={[titleStyle.title, {fontSize}, {paddingTop}, {opacity}]}>
-        This guil Recipe
+        style={[
+          titleStyle.title,
+          {fontSize},
+          {paddingTop},
+          {marginBottom},
+          {marginTop},
+        ]}>
+        Makachange.
       </Animated.Text>
       <Animated.Text style={[titleStyle.subTitle, {opacity}]}>
-        This guil Recipe
+        It's so easy.
       </Animated.Text>
     </>
   );
@@ -107,7 +140,7 @@ class MainScreen extends React.Component<Props, State> {
     isOnFocus: false,
   };
   componentDidMount(): void {
-      //TODO: fetch recipes
+    //TODO: fetch recipes
   }
 
   render() {
