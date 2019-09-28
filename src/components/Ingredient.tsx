@@ -9,8 +9,8 @@ import {
 import {MyView, TextBold, TextExtraBold, TextRegular} from '../layout/Layout';
 import {Image, StyleSheet} from 'react-native';
 import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
-import IngredientEvaluationView from './IngredientEvaluationView';
-import Card from './Card';
+import getCo2Hue from '../helpers/get-co2-hue';
+import {getAlphaColor} from '../layout/AlphaColor';
 
 type Props = {
   ingredient: ProductWithCarbonProjection;
@@ -30,15 +30,15 @@ const Name = styled(TextExtraBold)`
   text-align: center;
 `;
 
-const CO2 = styled(TextRegular)`
-  color: ${__GRAY_COLORS._BLACK};
-  margin-top: 12px;
+const CO2 = styled(TextRegular)<{color: string}>`
+  margin-top: 5px;
   text-align: center;
+  color: ${props => props.color};
 `;
 
-const Separator = styled(MyView)<{color: string}>`
-  width: 10px;
-  height: 4px;
+const Label = styled(MyView)<{color: string}>`
+  padding: 2px 8px 4px 8px;
+  border-radius: 6px;
   background: ${props => props.color};
 `;
 
@@ -59,7 +59,6 @@ export const Ingredient = ({ingredient}: Props) => {
   const price = product.price; // rappe
   const co2offset = ingredient.co2Offset;
   const color = ingredient.product.colors;
-  console.log(co2offset);
 
   return (
     <Container>
@@ -72,8 +71,14 @@ export const Ingredient = ({ingredient}: Props) => {
           resizeMode={'contain'}
         />
       </ImageContainer>
-      <Name fontSize={14}>{product.name}</Name>
-      <CO2 fontSize={14}>{Math.round(co2offset).toFixed(0)} CO2</CO2>
+      <Name fontSize={13}>
+        {product.name.substr(0, 32)} {product.name.length > 32 && '..'}
+      </Name>
+      <Label color={getAlphaColor(0.3, getCo2Hue(co2offset))}>
+        <CO2 fontSize={14} color={getAlphaColor(1, getCo2Hue(co2offset))}>
+          {Math.round(co2offset).toFixed(0)} CO₂
+        </CO2>
+      </Label>
     </Container>
   );
 };

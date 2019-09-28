@@ -9,13 +9,13 @@ import {StyleSheet, View, Image} from 'react-native';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {Recipe} from '../helpers/backend-types';
 
-type Props = {score: number; recipe: Recipe};
+type Props = {recipe: Recipe; scores: number[]};
 
 const Overlay = styled(MyView)``;
 
 const Container = styled(MyView)`
   position: absolute;
-  width: ${__WINDOW_WIDTH / 1.75}px;
+  width: ${__WINDOW_WIDTH / 2}px;
   height: 170px;
 `;
 
@@ -39,34 +39,50 @@ class OverallScore extends React.PureComponent<Props, {}> {
       labelWidth: 0,
     };
   }
+
   render() {
     // @ts-ignore
     const {labelWidth, selectedSlice} = this.state;
     const {label, value} = selectedSlice;
     const keys = ['google', 'facebook', 'linkedin', 'youtube', 'Twitter'];
-    const values = [40, 50, 20, 60, 70];
-    const colors = [
-      getAlphaColor(0.75, getCo2Hue(10)),
-      getAlphaColor(0.75, getCo2Hue(30)),
-      getAlphaColor(0.75, getCo2Hue(100)),
-      getAlphaColor(0.75, getCo2Hue(150)),
-      getAlphaColor(0.75, getCo2Hue(400)),
-    ];
+
+    let scores = [...new Set(this.props.scores)];
+
+    if (scores.length === 0) {
+      scores.push(50);
+      scores.push(100);
+    }
+    const colors = scores.map(s => {
+      return getAlphaColor(0.75, getCo2Hue(s));
+    });
+
+    let avarage = 0;
+    scores.map(s => {
+      avarage += s;
+    });
+    let overallScore = avarage / scores.length;
+
     const data = keys.map((key, index) => {
       return {
         key,
-        value: values[index],
+        value: scores[index],
         svg: {fill: colors[index]},
         arc: {
-          outerRadius: 70 + values[index] + '%',
+          outerRadius: 70 + scores[index] / 5.6 + '%',
           padAngle: label === key ? 0.1 : 0,
         },
         onPress: () =>
-          this.setState({selectedSlice: {label: key, value: values[index]}}),
+          this.setState({selectedSlice: {label: key, value: scores[index]}}),
       };
     });
-    const deviceWidth = __WINDOW_WIDTH;
-    console.log(this.props.recipe.image);
+    let ingriedients = this.props.recipe.ingredients;
+    ingriedients.map(i => {
+      let food = i.food;
+      console.log(food, i.gram);
+    });
+
+    // wenn 2 in co2offset -> 200g CO2 pro 100g Food
+    // food: in gram
     return (
       <View
         style={[
@@ -97,7 +113,7 @@ class OverallScore extends React.PureComponent<Props, {}> {
         </Container>
 
         <PieChart
-          style={{height: 150, marginLeft: 210, paddingBottom: 20}}
+          style={{height: 150, marginLeft: 175, paddingBottom: 15}}
           outerRadius={'70%'}
           innerRadius={'50%'}
           data={data}
@@ -114,26 +130,15 @@ class OverallScore extends React.PureComponent<Props, {}> {
           }}
           style={[
             {
-              top: 70,
+              top: 73,
               color: __GRAY_COLORS._BLACK,
               position: 'absolute',
-              right: 65,
+              right: 82,
               textAlign: 'center',
             },
           ]}>
-          {Math.round(this.props.score).toFixed(0)}
+          {Math.round(overallScore).toFixed(0)}
         </TextRegular>
-        <TextLight
-          fontSize={11}
-          style={{
-            top: 105,
-            color: __GRAY_COLORS._700,
-            position: 'absolute',
-            left: deviceWidth / 2 - labelWidth / 2 - 4,
-            textAlign: 'center',
-          }}>
-          CO2 KG
-        </TextLight>
       </View>
     );
   }

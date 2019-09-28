@@ -67,7 +67,7 @@ export default (props: {
       <Card>
         <OverallScore
           recipe={props.recipe}
-          score={possibility.ingredients[0].products[0].co2Offset}
+          scores={possibility.ingredients[0].products.map(p => p.co2Offset)}
         />
         <Ingredients ingredients={possibility.ingredients} />
         <View style={{height: 12}} />

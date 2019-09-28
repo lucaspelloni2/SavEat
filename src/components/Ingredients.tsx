@@ -56,21 +56,10 @@ type Props = {
 };
 
 export class Ingredients extends Component<Props, {}> {
-  state = {
-    entries: [{title: '1ajsfjoajsf'}, {title: '2ajosfjoajof'}],
-  };
-  private _carousel: any;
-
-  constructor(props) {
-    super(props);
-    this._carousel = React.createRef();
-  }
+  private _carousel = React.createRef();
 
   _renderItem({item, index}) {
     const i = item.products[0];
-    if (!item.products.length) {
-      return <TextBold>No ingredients</TextBold>;
-    }
     return (
       <View
         key={index}
@@ -96,12 +85,15 @@ export class Ingredients extends Component<Props, {}> {
   render() {
     return (
       <Carousel
+        onSnapToItem={(index: number) => {
+          console.log(index);
+        }}
         layout={'default'}
         ref={c => {
           this._carousel = c;
         }}
-        data={this.props.ingredients}
-        renderItem={this._renderItem}
+        data={this.props.ingredients.filter(i => i.products.length > 0)}
+        renderItem={({item, index}) => this._renderItem({item, index})}
         sliderWidth={__WINDOW_WIDTH}
         itemWidth={160}
       />
