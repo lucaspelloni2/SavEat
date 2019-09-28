@@ -8,9 +8,15 @@ import {
   MyView,
   SPACING,
 } from '../layout/Layout';
-import {Recipe, RecipeEvaluationPossibility} from '../helpers/backend-types';
-import {__COLORS} from '../layout/Colors';
+import {
+  Product,
+  Recipe,
+  RecipeEvaluationPossibility,
+} from '../helpers/backend-types';
+import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
 import Hack from './Hack';
+import getCo2Hue from '../helpers/get-co2-hue';
+import {getAlphaColor} from '../layout/AlphaColor';
 
 type Props = {
   possibilities: RecipeEvaluationPossibility[];
@@ -26,7 +32,6 @@ const MyCard = styled(MyView)<{color: string}>`
 
 const Container = styled(MyView)`
   flex: 1;
-  background: #1e201b;
 `;
 
 const Coop = styled(MyView)``;
@@ -48,13 +53,13 @@ const Absolute = styled(MyView)`
 
 const SuperHack = styled(MyView)`
   position: absolute;
-  right: -10px;
-  bottom: 200px;
+  right: 10px;
+  bottom: 150px;
 `;
 
 const SuperHack2 = styled(MyView)`
   position: absolute;
-  left: -150px;
+  left: -170px;
   top: 120px;
 `;
 export const Comparison = ({possibilities, recipe}: Props) => {
@@ -63,6 +68,9 @@ export const Comparison = ({possibilities, recipe}: Props) => {
 
   const [migrosScores, setMigrosScores] = useState([]);
   const [coopScores, setCoopScores] = useState([]);
+
+  const [migrosProduct, setMigrosProduct] = useState([]);
+  const [coopProduct, setCoopProduct] = useState([]);
   // @ts-ignore
   const grams = recipe.ingredients.map(i => i.gram);
 
@@ -83,13 +91,18 @@ export const Comparison = ({possibilities, recipe}: Props) => {
         totalOffset += offset;
       }
       const co2Score = (totalOffset / totalGrams) * 100;
+      let product = p.ingredients
+        .filter(i => i.products.length > 0)
+        .map(i => i.products[0].product);
       if (p.store === 'COOP') {
         setCoopScore(co2Score);
         setCoopScores(offsets);
+        setCoopProduct(product);
         console.log(offsets);
       } else if (p.store === 'MIGROS') {
         setMigrosScore(co2Score);
         setMigrosScores(offsets);
+        setMigrosProduct(product);
       }
     });
   }, []);
@@ -107,11 +120,30 @@ export const Comparison = ({possibilities, recipe}: Props) => {
               style={{width: 100, height: 100, marginLeft: 10}}
               resizeMode={'contain'}
             />
+            <MyView style={{flexDirection: 'row', top: -74, left: 160}}>
+              {coopProduct.map((p: Product) => {
+                return (
+                  <Image
+                    source={{uri: p.image}}
+                    style={{
+                      width: 35,
+                      height: 35,
+                      marginLeft: -15,
+                      borderRadius: 25,
+                      borderWidth: 0.3,
+                      borderColor: __COLORS.PRIMARY,
+                    }}
+                  />
+                );
+              })}
+            </MyView>
             <SuperHack2>
               <Hack
+                currentIndex={0}
+                currentScore={0}
                 co2Score={coopScore}
                 recipe={recipe}
-                scores={setCoopScores}
+                scores={coopScores}
               />
             </SuperHack2>
           </Coop>
@@ -123,8 +155,28 @@ export const Comparison = ({possibilities, recipe}: Props) => {
               style={{width: 120, height: 100, marginLeft: 10}}
               resizeMode={'contain'}
             />
+            <MyView style={{flexDirection: 'row', top: -68, right: 150}}>
+              {migrosProduct.map((p: Product) => {
+                return (
+                  <Image
+                    source={{uri: p.image}}
+                    style={{
+                      width: 35,
+                      height: 35,
+                      marginRight: -15,
+                      borderRadius: 25,
+                      borderWidth: 0.3,
+                      borderColor: __COLORS.PRIMARY,
+                    }}
+                  />
+                );
+              })}
+            </MyView>
             <SuperHack>
               <Hack
+                colorText={__GRAY_COLORS._BLACK}
+                currentIndex={0}
+                currentScore={0}
                 co2Score={migrosScore}
                 recipe={recipe}
                 scores={migrosScores}
@@ -143,9 +195,9 @@ const styles = StyleSheet.create({
     height: 0,
     backgroundColor: 'transparent',
     borderStyle: 'solid',
-    borderRightWidth: __WINDOW_WIDTH,
-    borderTopWidth: __WINDOW_HEIGHT - SPACING * 11,
+    borderRightWidth: __WINDOW_WIDTH - 10,
+    borderTopWidth: __WINDOW_HEIGHT - SPACING * 12,
     borderRightColor: 'transparent',
-    borderTopColor: 'white',
+    borderTopColor: getAlphaColor(0.5, __GRAY_COLORS._200),
   },
 });

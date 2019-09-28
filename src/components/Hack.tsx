@@ -15,6 +15,7 @@ type Props = {
   co2Score: number;
   currentScore: number;
   currentIndex: number;
+  colorText?: string;
 };
 
 const Overlay = styled(MyView)``;
@@ -108,7 +109,7 @@ class Hack extends React.PureComponent<Props, {}> {
           Shadow.shadow,
         ]}>
         <PieChart
-          style={{height: 150, marginLeft: 175, paddingBottom: 15}}
+          style={{height: 220, marginLeft: 175, paddingBottom: 15}}
           outerRadius={'70%'}
           innerRadius={'50%'}
           data={data}
@@ -125,8 +126,8 @@ class Hack extends React.PureComponent<Props, {}> {
           }}
           style={[
             {
-              top: 68,
-              color: __GRAY_COLORS._BLACK,
+              top: 100,
+              color: this.props.colorText || __GRAY_COLORS._BLACK,
               position: 'absolute',
               right: 82,
               textAlign: 'center',
@@ -134,7 +135,14 @@ class Hack extends React.PureComponent<Props, {}> {
           ]}>
           {Math.round(this.props.co2Score).toFixed(0)}
         </TextRegular>
-        <Text style={{fontSize: 10, position: 'absolute', right: 72, top: 95}}>
+        <Text
+          style={{
+            fontSize: 10,
+            position: 'absolute',
+            right: 72,
+            top: 130,
+            color: this.props.colorText || __GRAY_COLORS._BLACK,
+          }}>
           g CO₂/100g
         </Text>
       </View>
