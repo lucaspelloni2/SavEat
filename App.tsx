@@ -10,6 +10,7 @@ YellowBox.ignoreWarnings([
   'Warning: componentWillReceiveProps has been renamed',
   'Warning: componentWillUpdate has been renamed',
   '-[RCTRootView cancelTouches]',
+  'Task orphaned',
 ]);
 
 const App: () => ReactNode = () => {

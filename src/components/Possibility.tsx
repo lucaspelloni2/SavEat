@@ -31,7 +31,7 @@ const getImage = (store: string) => {
 
 export default (props: {possibility: RecipeEvaluationPossibility}) => {
   const possibility = props.possibility;
-  const {store, ingredients} = possibility;
+  const {store} = possibility;
   // @ts-ignore
   return (
     <>
@@ -39,19 +39,17 @@ export default (props: {possibility: RecipeEvaluationPossibility}) => {
         <Flex number={store === 'COOP' ? 1 : 0} />
         {Stores.map(s => {
           return (
-            <>
-              <Store isActive={s === store}>
-                <Image
-                  source={getImage(s)}
-                  style={{
-                    width: 100,
-                    height: 35,
-                    tintColor: s === store ? 'default' : 'gray',
-                  }}
-                  resizeMode={'contain'}
-                />
-              </Store>
-            </>
+            <Store isActive={s === store} key={s}>
+              <Image
+                source={getImage(s)}
+                style={{
+                  width: 100,
+                  height: 35,
+                  tintColor: s === store ? undefined : 'gray',
+                }}
+                resizeMode={'contain'}
+              />
+            </Store>
           );
         })}
         <Flex number={store === 'COOP' ? 0 : 1} />

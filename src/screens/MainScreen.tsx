@@ -195,6 +195,7 @@ class MainScreen extends React.Component<Props, State> {
 
           <Recipes contentContainerStyle={{paddingLeft: 16, paddingRight: 16}}>
             <Filters
+              filter={this.state.filter}
               onFilterChange={filter => {
                 this.setState({
                   filter,
@@ -206,7 +207,7 @@ class MainScreen extends React.Component<Props, State> {
             ) : (
               recipes
                 .filter(f => {
-                  if (this.state.filter) {
+                  if (!this.state.filter) {
                     return true;
                   }
                   return f.filters.indexOf(this.state.filter) > -1;
