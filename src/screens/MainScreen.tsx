@@ -9,6 +9,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  Text,
 } from 'react-native';
 import Menu from '../assets/icons/menu.svg';
 import {__COLORS} from '../layout/Colors';
@@ -136,7 +137,7 @@ const AnimatedTitle = ({isOnFocus}: TitleProps) => {
           {marginTop},
           {opacity},
         ]}>
-        Saveat.
+        <Text style={{color: 'rgba(255, 255, 255, 0.7)'}}>Sav</Text>eat!
       </Animated.Text>
       <Animated.Text style={[titleStyle.subTitle, {opacity}]}>
         Make a change. It's easy.
