@@ -8,6 +8,7 @@ YellowBox.ignoreWarnings([
   'Warning: componentWillMount has been renamed',
   'Warning: componentWillReceiveProps is deprecated',
   'Warning: componentWillReceiveProps has been renamed',
+  'Warning: componentWillUpdate has been renamed',
   '-[RCTRootView cancelTouches]',
 ]);
 
