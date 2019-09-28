@@ -9,7 +9,11 @@ import {StyleSheet, View, Image} from 'react-native';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {Recipe} from '../helpers/backend-types';
 
-type Props = {recipe: Recipe; scores: number[]};
+type Props = {
+  recipe: Recipe;
+  scores: number[];
+  currentScore: number;
+};
 
 const Overlay = styled(MyView)``;
 
@@ -44,16 +48,20 @@ class OverallScore extends React.PureComponent<Props, {}> {
     // @ts-ignore
     const {labelWidth, selectedSlice} = this.state;
     const {label, value} = selectedSlice;
-    const keys = ['google', 'facebook', 'linkedin', 'youtube', 'Twitter'];
 
+    // @ts-ignore
     let scores = [...new Set(this.props.scores)];
+
+    console.log('All scores, ', scores);
+    console.log('current score', this.props.currentScore);
 
     if (scores.length === 0) {
       scores.push(50);
       scores.push(100);
     }
+
     const colors = scores.map(s => {
-      return getAlphaColor(0.75, getCo2Hue(s));
+        return getAlphaColor(0.75, getCo2Hue(s));
     });
 
     let avarage = 0;
@@ -62,14 +70,14 @@ class OverallScore extends React.PureComponent<Props, {}> {
     });
     let overallScore = avarage / scores.length;
 
-    const data = keys.map((key, index) => {
+    const data = scores.map((key, index) => {
       return {
         key,
         value: scores[index],
         svg: {fill: colors[index]},
         arc: {
           outerRadius: 70 + scores[index] / 5.6 + '%',
-          padAngle: label === key ? 0.1 : 0,
+          padAngle: 0.01,
         },
         onPress: () =>
           this.setState({selectedSlice: {label: key, value: scores[index]}}),
@@ -78,7 +86,6 @@ class OverallScore extends React.PureComponent<Props, {}> {
     let ingriedients = this.props.recipe.ingredients;
     ingriedients.map(i => {
       let food = i.food;
-      console.log(food, i.gram);
     });
 
     // wenn 2 in co2offset -> 200g CO2 pro 100g Food

@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import {Recipe, RecipeEvaluationPossibility} from '../helpers/backend-types';
+import {
+  Product,
+  Recipe,
+  RecipeEvaluationPossibility,
+} from '../helpers/backend-types';
 import {View, Image} from 'react-native';
 import Card from './Card';
 import {Flex, MyView} from '../layout/Layout';
@@ -37,8 +41,17 @@ export default (props: {
   possibility: RecipeEvaluationPossibility;
   recipe: Recipe;
 }) => {
+  const [currentIndex, setCurrentIndex] = useState(5);
   const possibility = props.possibility;
+
+  const ingredients = possibility.ingredients.filter(
+    i => i.products.length > 0,
+  );
   const {store} = possibility;
+  let currentScore = ingredients[currentIndex].products[0]
+    ? ingredients[currentIndex].products[0].co2Offset
+    : 0;
+
   // @ts-ignore
   return (
     <>
@@ -64,11 +77,21 @@ export default (props: {
       <Card>
         <OverallScore
           recipe={props.recipe}
-          scores={possibility.ingredients[0].products.map(p => p.co2Offset)}
+          currentScore={currentScore}
+          scores={ingredients
+            .map(i => {
+              return i.products[0] && i.products[0].co2Offset;
+            })
+            .filter(Boolean)}
         />
-        <Ingredients ingredients={possibility.ingredients} />
+        <Ingredients
+          ingredients={ingredients}
+          onSnapToItem={currentIndex => {
+            setCurrentIndex(currentIndex);
+          }}
+        />
         <View style={{height: 12}} />
-        {possibility.ingredients.map((i, idx) => (
+        {ingredients.map((i, idx) => (
           <View key={idx}>
             {i.products.length > 0 ? (
               <>

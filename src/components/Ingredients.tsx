@@ -53,6 +53,7 @@ import {__GRAY_COLORS} from '../layout/Colors';
 
 type Props = {
   ingredients: RecipeEvaluationPossibilityIngredient[];
+  onSnapToItem: (index: number) => void;
 };
 
 export class Ingredients extends Component<Props, {}> {
@@ -69,12 +70,11 @@ export class Ingredients extends Component<Props, {}> {
             marginTop: 10,
             height: 200,
             backgroundColor: 'transparent',
-
             borderRadius: 10,
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 10,
+            paddingBottom: 10,
           },
         ]}>
         <Ingredient ingredient={i} />
@@ -86,7 +86,7 @@ export class Ingredients extends Component<Props, {}> {
     return (
       <Carousel
         onSnapToItem={(index: number) => {
-          console.log(index);
+          this.props.onSnapToItem(index);
         }}
         layout={'default'}
         ref={c => {

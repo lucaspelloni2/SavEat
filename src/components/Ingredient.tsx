@@ -14,6 +14,7 @@ import {getAlphaColor} from '../layout/AlphaColor';
 
 type Props = {
   ingredient: ProductWithCarbonProjection;
+
 };
 const Container = styled(MyView)`
   flex-direction: column;
@@ -76,7 +77,7 @@ export const Ingredient = ({ingredient}: Props) => {
       </Name>
       <Label color={getAlphaColor(0.3, getCo2Hue(co2offset))}>
         <CO2 fontSize={14} color={getAlphaColor(1, getCo2Hue(co2offset))}>
-          {Math.round(co2offset).toFixed(0)} CO₂
+          {Math.round(co2offset).toFixed(0)}g CO₂
         </CO2>
       </Label>
     </Container>
