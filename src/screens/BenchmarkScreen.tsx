@@ -1,21 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Flex, MyView} from '../layout/Layout';
-import {NavigationScreenProp} from 'react-navigation';
+import {NavigationScreenProp, withNavigation} from 'react-navigation';
+import FullscreenBackground from '../layout/FullscreenBackground';
 
-const Container = styled(Flex)`
-  background: blue;
-`;
+const Container = styled(Flex)``;
 
 type Props = {
-    navigation: NavigationScreenProp<any, any>;
+  navigation: NavigationScreenProp<any, any>;
 };
 
 class BenchmarkScreen extends React.Component<Props, {}> {
-    componentDidMount(): void {}
-
-    render() {
-        return <Container number={1} />;
-    }
+  render() {
+    return <FullscreenBackground />;
+  }
 }
-export default BenchmarkScreen;
+export default withNavigation(BenchmarkScreen);

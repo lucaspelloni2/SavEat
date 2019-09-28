@@ -6,7 +6,7 @@ import Price from '../assets/icons/price.svg';
 import CO2 from '../assets/icons/co2.svg';
 import {__COLORS} from '../layout/Colors';
 import {getAlphaColor} from '../layout/AlphaColor';
-import {TouchableOpacity} from "react-native";
+import {TouchableOpacity} from 'react-native';
 
 export const Container = styled(TouchableOpacity)`
   flex-direction: row;
@@ -51,7 +51,7 @@ export const Filters = () => {
     <Container>
       {Types.map(t => {
         return (
-          <BallContainer>
+          <BallContainer key={t.name}>
             <Ball>
               <IconContainer>{t.icon}</IconContainer>
             </Ball>

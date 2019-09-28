@@ -1,12 +1,4 @@
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {__SCREENS} from "./Screens";
-import {OnBoardingStackNavigator} from "./AppStackNavigator";
+import {createAppContainer} from 'react-navigation';
+import {OnBoardingStackNavigator} from './AppStackNavigator';
 
-export default createAppContainer(
-    createSwitchNavigator(
-        {
-            [__SCREENS.APP]: OnBoardingStackNavigator,
-        },
-        {initialRouteName: __SCREENS.APP},
-    ),
-);
+export default createAppContainer(OnBoardingStackNavigator);

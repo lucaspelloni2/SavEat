@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import {TouchableOpacity, Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {MyView, SPACING, TextBold, TextRegular} from '../layout/Layout';
 import {__COLORS} from '../layout/Colors';
 import {getAlphaColor} from '../layout/AlphaColor';
-import {Filters} from "./Filters";
+import {Filters} from './Filters';
 
 export type Ingredients = {
   id: string;
@@ -29,7 +29,7 @@ type Props = {
   recipe: RecipeType;
 };
 
-const Container = styled(TouchableOpacity)`
+const Container = styled(View)`
   min-height: 150px;
   flex-direction: row;
   border-bottom-width: 1px;
@@ -65,10 +65,8 @@ const Shadow = StyleSheet.create({
 
 export const Recipe = ({recipe}: Props) => {
   const SIZE = 120;
-  console.log(recipe.name);
   return (
     <Container>
-
       <PictureContainer>
         <View style={[Shadow.shadow]}>
           <Image

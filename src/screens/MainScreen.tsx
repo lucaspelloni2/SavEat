@@ -7,8 +7,14 @@ import {
   TextRegular,
   Wrapper,
 } from '../layout/Layout';
-import {NavigationScreenProp} from 'react-navigation';
-import {ActivityIndicator, Image, ScrollView, StyleSheet} from 'react-native';
+import {NavigationScreenProp, withNavigation} from 'react-navigation';
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import Menu from '../assets/icons/menu.svg';
 import {__COLORS} from '../layout/Colors';
 import {getAlphaColor} from '../layout/AlphaColor';
@@ -18,6 +24,8 @@ import {__FONT_FAMILIES} from '../layout/Fonts';
 import {useTransition} from 'react-native-redash';
 import {Recipe, RecipeType} from '../components/Recipe';
 import {Filters} from '../components/Filters';
+import {__SCREENS} from '../navigation/Screens';
+import FullscreenBackground from '../layout/FullscreenBackground';
 
 const Container = styled(MyView)`
   flex: 1;
@@ -26,7 +34,7 @@ const Container = styled(MyView)`
 
 const Recipes = styled(ScrollView)`
   margin-top: ${SPACING}px;
-  margin-bottom: ${SPACING*2}px;
+  margin-bottom: ${SPACING * 2}px;
 `;
 
 type Props = {
@@ -219,10 +227,7 @@ class MainScreen extends React.Component<Props, State> {
     // @ts-ignore
     return (
       <>
-        <Image
-          style={{position: 'absolute'}}
-          source={require('../assets/images/background.png')}
-        />
+        <FullscreenBackground />
         <AnimateSalt isOnFocus={this.state.isOnFocus} />
         <Wrapper number={1}>
           <AnimatedTitle isOnFocus={this.state.isOnFocus} />
@@ -248,7 +253,15 @@ class MainScreen extends React.Component<Props, State> {
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
                 recipes.map((r: RecipeType) => {
-                  return <Recipe recipe={r} key={r.id} />;
+                  return (
+                    <TouchableOpacity
+                      key={r.id}
+                      onPress={() => {
+                        navigation.navigate(__SCREENS.BENCHMARK);
+                      }}>
+                      <Recipe recipe={r} />
+                    </TouchableOpacity>
+                  );
                 })
               )}
             </Recipes>
@@ -258,4 +271,4 @@ class MainScreen extends React.Component<Props, State> {
     );
   }
 }
-export default MainScreen;
+export default withNavigation(MainScreen);

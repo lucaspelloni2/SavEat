@@ -14,9 +14,7 @@ type NavigationProps = {
 export const OnBoardingStackNavigator = createStackNavigator(
   {
     [__SCREENS.APP]: {
-      screen: ({navigation}: NavigationProps) => (
-        <MainScreen navigation={navigation} />
-      ),
+      screen: MainScreen,
       path: __SCREENS.APP,
       navigationOptions: ({navigation}: NavigationProps) => ({
         header: null,
@@ -25,10 +23,9 @@ export const OnBoardingStackNavigator = createStackNavigator(
       backgroundColor: 'transparent',
     },
     [__SCREENS.BENCHMARK]: {
-      screen: ({navigation}: NavigationProps) => (
-        <BenchmarkScreen navigation={navigation} />
-      ),
+      screen: BenchmarkScreen,
       path: __SCREENS.BENCHMARK,
+      headerTransparent: true,
       navigationOptions: ({navigation}: NavigationProps) => ({
         headerTitle: <TextBold>title</TextBold>,
         headerLeft: <BackIcon navigation={navigation} />,
