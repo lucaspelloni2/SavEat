@@ -148,7 +148,7 @@ const AnimatedTitle = ({isOnFocus}: TitleProps) => {
 //  50 CO2 KG pro 100g Food guet
 const FakeRecipes: RecipeType[] = [
   {
-    id: '1',
+    id: 'mexican-tortillas',
     image: 'https://recipecontent.fooby.ch/7844_3-2_480-320.jpg',
     provenance: 'Mexico',
     co2: 20,
@@ -161,7 +161,7 @@ const FakeRecipes: RecipeType[] = [
     totalPrice: 9.95,
   },
   {
-    id: '2',
+    id: 'futomaki-sushi',
     image: 'https://recipecontent.fooby.ch/18209_3-2_480-320.jpg',
     provenance: 'Japan',
     co2: 40,
@@ -250,7 +250,9 @@ class MainScreen extends React.Component<Props, State> {
                     <TouchableOpacity
                       key={r.id}
                       onPress={() => {
-                        navigation.navigate(__SCREENS.BENCHMARK);
+                        navigation.navigate(__SCREENS.BENCHMARK, {
+                          id: r.id,
+                        });
                       }}>
                       <Recipe recipe={r} />
                     </TouchableOpacity>

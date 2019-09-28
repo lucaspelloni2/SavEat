@@ -5,7 +5,6 @@ import FullscreenBackground from '../layout/FullscreenBackground';
 import apiRequest from '../helpers/api-request';
 import {View, ActivityIndicator} from 'react-native';
 import {RecipeEvaluation} from '../helpers/backend-types';
-import {Text} from 'react-native-svg';
 import Possibility from '../components/Possibility';
 import RecipeDetail from '../components/RecipeDetail';
 import styled from 'styled-components';
@@ -21,18 +20,18 @@ const CardHolder = styled(View)`
   padding-right: 16px;
 `;
 
-export default withNavigation(() => {
+export default withNavigation((props: Props) => {
   const [recipeEvaluation, setRecipeEvaluation] = useState<RecipeEvaluation>(
     null,
   );
   // like componentDidMounts
   useEffect(() => {
-    apiRequest('/')
+    apiRequest(`/recipes/${props.navigation.getParam('id')}`)
       .then((response: RecipeEvaluation) => {
         setRecipeEvaluation(response);
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   }, []);
   const renderContent = () => {
