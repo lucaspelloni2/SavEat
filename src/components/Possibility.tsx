@@ -39,7 +39,7 @@ export default (props: {
   possibility: RecipeEvaluationPossibility;
   recipe: Recipe;
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(5);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const possibility = props.possibility;
 
   const ingredients = possibility.ingredients.filter(
@@ -76,6 +76,7 @@ export default (props: {
       <Card>
         <OverallScore
           recipe={props.recipe}
+          currentIndex={currentIndex}
           currentScore={currentScore}
           scores={ingredients
             .map(i => {

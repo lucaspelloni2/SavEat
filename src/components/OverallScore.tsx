@@ -13,6 +13,7 @@ type Props = {
   recipe: Recipe;
   scores: number[];
   currentScore: number;
+  currentIndex: number;
 };
 
 const Overlay = styled(MyView)``;
@@ -59,9 +60,13 @@ class OverallScore extends React.PureComponent<Props, {}> {
       scores.push(50);
       scores.push(100);
     }
-
+    console.log('current index ', this.props.currentIndex);
     const colors = scores.map(s => {
-        return getAlphaColor(0.75, getCo2Hue(s));
+      if (s === this.props.currentScore || this.props.currentIndex === 0) {
+        return getAlphaColor(0.85, getCo2Hue(s));
+      } else {
+        return getAlphaColor(0.5, getCo2Hue(s));
+      }
     });
 
     let avarage = 0;
