@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {PieChart} from 'react-native-svg-charts';
 import {__COLORS, __GRAY_COLORS} from '../layout/Colors';
 import getCo2Hue from '../helpers/get-co2-hue';
-import {__WINDOW_WIDTH, MyView, TextLight, TextRegular} from '../layout/Layout';
+import {__WINDOW_WIDTH, MyView, TextRegular} from '../layout/Layout';
 import {StyleSheet, View, Image, Text} from 'react-native';
 import {getAlphaColor} from '../layout/AlphaColor';
 import {Recipe} from '../helpers/backend-types';
@@ -48,10 +48,6 @@ class OverallScore extends React.PureComponent<Props, {}> {
 
   render() {
     // @ts-ignore
-    const {labelWidth, selectedSlice} = this.state;
-    const {label, value} = selectedSlice;
-
-    // @ts-ignore
     let scores = [...new Set(this.props.scores)];
 
     console.log('All scores, ', scores);
@@ -69,12 +65,6 @@ class OverallScore extends React.PureComponent<Props, {}> {
         return getAlphaColor(0.5, getCo2Hue(s));
       }
     });
-
-    let avarage = 0;
-    scores.map(s => {
-      avarage += s;
-    });
-    let overallScore = this.props.scores;
 
     let ratio =
       scores.filter(x => x > 200).length === 0
@@ -95,10 +85,6 @@ class OverallScore extends React.PureComponent<Props, {}> {
         onPress: () =>
           this.setState({selectedSlice: {label: key, value: scores[index]}}),
       };
-    });
-    let ingriedients = this.props.recipe.ingredients;
-    ingriedients.map(i => {
-      let food = i.food;
     });
 
     // wenn 2 in co2offset -> 200g CO2 pro 100g Food

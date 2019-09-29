@@ -1,8 +1,8 @@
 import React, {useState, useContext} from 'react';
 import {Recipe, RecipeEvaluationPossibility} from '../helpers/backend-types';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {View, Image} from 'react-native';
 import Card from './Card';
-import {Flex, MyView} from '../layout/Layout';
+import {MyView} from '../layout/Layout';
 import styled from 'styled-components';
 import {Ingredients} from './Ingredients';
 import OverallScore from './OverallScore';
@@ -14,7 +14,7 @@ import {TouchableHighlight} from 'react-native-gesture-handler';
 
 const StoresView = styled(MyView)`
   flex-direction: row;
-  margin-top: -20px;
+  margin-top: -45px;
   margin-bottom: 10px;
 `;
 
@@ -102,8 +102,8 @@ export default (props: {
         />
         <Ingredients
           ingredients={ingredients}
-          onSnapToItem={currentIndex => {
-            setCurrentIndex(currentIndex);
+          onSnapToItem={idx => {
+            setCurrentIndex(idx);
           }}
         />
         <View style={{height: 12}} />
