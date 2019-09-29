@@ -66,7 +66,7 @@ export default withNavigation((props: Props) => {
         <Comparison recipe={recipeEvaluation.recipe} possibilities={recipeEvaluation.possibilities} />
       </CardHolder>,
     ];
-    return [...comparison, children, ...possibilities, ...comparison];
+    return [children, ...possibilities, ...comparison];
   };
   return (
     <View style={{flex: 1}}>
