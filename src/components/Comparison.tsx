@@ -160,6 +160,7 @@ export const Comparison = ({possibilities, recipe}: Props) => {
               {migrosProduct.map((p: Product) => {
                 return (
                   <Image
+                    key={p.image}
                     source={{uri: p.image}}
                     style={{
                       width: 35,

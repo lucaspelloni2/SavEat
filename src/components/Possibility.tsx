@@ -22,6 +22,7 @@ const Store = styled(MyView)<{isActive: boolean}>`
   opacity: ${props => (props.isActive ? 1 : 0.5)};
   transform: ${props => (props.isActive ? 'scale(1)' : 'scale(0.5)')};
   flex: 1;
+  align-items: center;
 `;
 
 export const Stores = ['COOP', 'MIGROS'];
@@ -68,8 +69,10 @@ export default (props: {
   return (
     <>
       <StoresView>
-        <Flex number={store === 'COOP' ? 1 : 0} />
         {Stores.map(s => {
+          if (s !== store) {
+            return null;
+          }
           return (
             <Store isActive={s === store} key={s}>
               <Image
@@ -84,7 +87,6 @@ export default (props: {
             </Store>
           );
         })}
-        <Flex number={store === 'COOP' ? 0 : 1} />
       </StoresView>
       <Card>
         <OverallScore

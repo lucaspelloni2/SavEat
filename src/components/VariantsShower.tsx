@@ -25,9 +25,9 @@ export default (props: {variants: ProductWithCarbonProjection[]}) => {
         paddingBottom: 50,
       }}>
       {limited.map((v, idx) => (
-        <View>
+        <View key={idx}>
           {idx === 0 ? <Title>Lowest emission</Title> : null}
-          {idx === 1 ? <Title>Alternatives</Title> : null}
+          {idx === 1 ? <Title>Other products</Title> : null}
           <VariantEvaluation evaluation={v} />
         </View>
       ))}
