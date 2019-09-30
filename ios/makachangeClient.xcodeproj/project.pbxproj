@@ -36,6 +36,34 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = makachangeClient;
 		};
+		1D496FA42340957000B8ABCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D496F9F2340957000B8ABCF /* RNGestureHandler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNGestureHandler;
+		};
+		1D496FA62340957000B8ABCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D496F9F2340957000B8ABCF /* RNGestureHandler.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
+			remoteInfo = "RNGestureHandler-tvOS";
+		};
+		1D496FB62340958900B8ABCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D496FB12340958900B8ABCF /* RNReanimated.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNReanimated;
+		};
+		1D496FB82340958900B8ABCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1D496FB12340958900B8ABCF /* RNReanimated.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FDBB176E229BF04900D1E455;
+			remoteInfo = "RNReanimated-tvOS";
+		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -64,6 +92,8 @@
 		1D496F96233EB5C600B8ABCF /* Gilroy-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Medium.otf"; path = "../src/assets/fonts/Gilroy-Medium.otf"; sourceTree = "<group>"; };
 		1D496F97233EB5C600B8ABCF /* Gilroy-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Regular.otf"; path = "../src/assets/fonts/Gilroy-Regular.otf"; sourceTree = "<group>"; };
 		1D496F98233EB5C600B8ABCF /* Gilroy-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Light.otf"; path = "../src/assets/fonts/Gilroy-Light.otf"; sourceTree = "<group>"; };
+		1D496F9F2340957000B8ABCF /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
+		1D496FB12340958900B8ABCF /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReanimated.xcodeproj; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; };
 		1E6432FC911C5D28B2309851 /* Pods-makachangeClient-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-makachangeClient-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-makachangeClient-tvOSTests/Pods-makachangeClient-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* makachangeClient-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "makachangeClient-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* makachangeClient-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "makachangeClient-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +178,24 @@
 			name = makachangeClient;
 			sourceTree = "<group>";
 		};
+		1D496FA02340957000B8ABCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D496FA52340957000B8ABCF /* libRNGestureHandler.a */,
+				1D496FA72340957000B8ABCF /* libRNGestureHandler-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1D496FB22340958900B8ABCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D496FB72340958900B8ABCF /* libRNReanimated.a */,
+				1D496FB92340958900B8ABCF /* libRNReanimated-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +212,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1D496FB12340958900B8ABCF /* RNReanimated.xcodeproj */,
+				1D496F9F2340957000B8ABCF /* RNGestureHandler.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -339,6 +389,16 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1D496FA02340957000B8ABCF /* Products */;
+					ProjectRef = 1D496F9F2340957000B8ABCF /* RNGestureHandler.xcodeproj */;
+				},
+				{
+					ProductGroup = 1D496FB22340958900B8ABCF /* Products */;
+					ProjectRef = 1D496FB12340958900B8ABCF /* RNReanimated.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* makachangeClient */,
@@ -348,6 +408,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1D496FA52340957000B8ABCF /* libRNGestureHandler.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGestureHandler.a;
+			remoteRef = 1D496FA42340957000B8ABCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1D496FA72340957000B8ABCF /* libRNGestureHandler-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNGestureHandler-tvOS.a";
+			remoteRef = 1D496FA62340957000B8ABCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1D496FB72340958900B8ABCF /* libRNReanimated.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNReanimated.a;
+			remoteRef = 1D496FB62340958900B8ABCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1D496FB92340958900B8ABCF /* libRNReanimated-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNReanimated-tvOS.a";
+			remoteRef = 1D496FB82340958900B8ABCF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
